@@ -4,10 +4,10 @@
 
 ## Team
 
+  -
   - teamMember
   - teamMember
-  - teamMember
-  - teamMember
+  - Steve Kim
 
 ## Table of Contents
 
