@@ -4,9 +4,9 @@
 
 ## Team
 
-  -
-  - teamMember
-  - teamMember
+  - Ming Feng
+  - Lavanya Chandrashekara
+  - Salih Abuelyaman
   - Steve Kim
 
 ## Table of Contents
