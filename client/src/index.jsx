@@ -8,6 +8,13 @@ class App extends React.Component {
     super(props);
   }
 
+  search(query) {
+    $.post('/search', {search: query})
+      .done(function(results) {
+        console.log(results);
+      });
+  }
+
   render() {
     return (
       <div>
