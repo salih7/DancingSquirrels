@@ -51,8 +51,9 @@ app.post('/search', (req, res) => {
   });
 });
 
-app.get('/podcast', (req, res) => {
+app.post('/podcast', (req, res) => {
   // let url = "http://www.softwaredefinedtalk.com/rss";
+  console.log(req.body.feedUrl);
   let url = req.body.feedUrl;
   request(url)
   .then(function(results) {

@@ -13,8 +13,11 @@ class App extends React.Component {
     }
   }
 
+
+
   search(query) {
-    $.post('/search', {search: query})
+    //console.log(query);
+    $.post('/search', { search: query })
       .done((results) => {
         console.log(results);
         this.setState({
