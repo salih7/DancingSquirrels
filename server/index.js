@@ -31,18 +31,20 @@ app.post('/search', (req, res) => {
         collectionName: item.collectionName,
         releaseDate: item.releaseDate,
         trackName: item.trackName,
-        collectionViewUrl: item.collectionViewUrl, //won't need
+        collectionViewUrl: item.collectionViewUrl,
         feedUrl: item.feedUrl,
         artworkUrl30: item.artworkUrl30,
         artworkUrl60: item.artworkUrl60,
         artworkUrl100: item.artworkUrl100,
+        artworkUrl600: item.artworkUrl600,
+        contentAdvisoryRating: item.contentAdvisoryRating,
         trackCount: item.trackCount,
         primaryGenreName: item.primaryGenreName,
         genres: item.genres
       };
       return track;
     });
-    res.status(200).send(results.body);
+    res.status(200).send(tracks);
   })
   .catch((err) => {
     res.status(404).send('We are experiencing some technical difficulties...');
