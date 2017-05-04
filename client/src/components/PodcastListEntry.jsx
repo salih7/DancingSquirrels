@@ -6,7 +6,7 @@ class PodcastListEntry extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      episodes: [],
+      podcast: {},
       renderEpisodes: false
     };
     this.onClickPodcast = this.onClickPodcast.bind(this);
@@ -23,11 +23,11 @@ class PodcastListEntry extends React.Component {
         feedUrl: this.props.podcast.feedUrl,
         collectionId: this.props.podcast.collectionId
       })
-        .done((episodes) => {
+        .done((podcast) => {
           // when done renderEpisodes is true AND episodes is set to the results
-          console.log(episodes);
+          console.log(podcast);
           this.setState({
-            episodes: episodes,
+            podcast: podcast[0],
             renderEpisodes: true
           });
         });
@@ -39,30 +39,22 @@ class PodcastListEntry extends React.Component {
       <div>
         <div onClick={this.onClickPodcast}><h2>{this.props.podcast.collectionName}</h2></div>
         <div><img src={this.props.podcast.artworkUrl100} /></div>
-        <div>{this.props.podcast.artistName}</div>
+        <div><h5>Artist: {this.props.podcast.artistName}</h5></div>
         {
           this.state.renderEpisodes 
            ? <div>
             {
-              this.state.episodes.map((episode) => {
-              return (
-                <div>
-                  {
-                    episode.episodes.map((ep) => {
-                      return (
-                        <div>
-                          <h3>{ep.title}</h3>
-                          <audio controls>
-                            <source src={ep.url} type="audio/mpeg" />
-                          </audio>
-                        </div>
-                      );
-                    }) 
-                  }
-                </div>
-              );
-            })} 
-
+              this.state.podcast.episodes.map((episode) => {
+                return (
+                  <div>
+                    <h3>Title: {episode.title}</h3>
+                    <audio controls>
+                      <source src={episode.url} type="audio/mpeg" />
+                    </audio>
+                  </div>
+                );
+              }).slice(0, 10) 
+            }
             </div>
            : null
         }
