@@ -18,10 +18,8 @@ class Search extends React.Component {
   }
 
   onSearch() {
+    console.log(this.state.query);
     this.props.onSearch(this.state.query);
-    this.setState({
-      query: ''
-    });
   }
 
   render() {
