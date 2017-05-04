@@ -54,8 +54,7 @@ app.post('/search', (req, res) => {
 
 
 app.post('/podcast', (req, res) => {
-  let url = "http://www.softwaredefinedtalk.com/rss";
-  // let url = req.body.feedUrl;
+  let url = req.body.feedUrl;
   let collectionId = req.body.collectionId;
   request(url)
   .then(function(results) {
