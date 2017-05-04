@@ -51,15 +51,15 @@ app.post('/search', (req, res) => {
   });
 });
 
-app.post('/channel', (req, res) => {
-  // let url = "http://www.softwaredefinedtalk.com/rss";
-  let url = req.query.feedUrl;
+app.get('/podcast', (req, res) => {
+  let url = "http://www.softwaredefinedtalk.com/rss";
+  // let url = req.query.feedUrl;
   request(url)
   .then(function(results) {
     let xml = results.body;
     parseString(xml, function(err, result) {
-      let tracks = result.rss.channel.map((ch) => {
-        let channel = {
+      let podcasts = result.rss.channel.map((ch) => {
+        let podcast = {
           title: ch.title,
           pubDate: ch.pubDate,
           summary: ch['itunes:summary'],
@@ -67,16 +67,16 @@ app.post('/channel', (req, res) => {
           description: ch.description,
           image: ch['itunes:image'][0].$.href
         }
-        channel.episodes = ch.item.map((obj) => {
+        podcast.episodes = ch.item.map((obj) => {
           let track = {
           title: obj.title,
           url: obj.enclosure[0].$.url,
           };
           return track;
         })
-        return channel;
+        return podcast;
       })
-      res.status(200).send(tracks);
+      res.status(200).send(podcasts);
     });
   })
   .catch(function(err) {
