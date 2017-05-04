@@ -34,6 +34,10 @@ app.post('/search', (req, res) => {
         collectionViewUrl: item.collectionViewUrl,
         feedUrl: item.feedUrl,
         artworkUrl30: item.artworkUrl30,
+        artworkUrl60: item.artworkUrl60,
+        artworkUrl100: item.artworkUrl100,
+        artworkUrl600: item.artworkUrl600,
+        contentAdvisoryRating: item.contentAdvisoryRating,
         trackCount: item.trackCount,
         primaryGenreName: item.primaryGenreName,
         genres: item.genres
@@ -47,22 +51,31 @@ app.post('/search', (req, res) => {
   });
 });
 
-app.post('/feed', (req, res) => {
-  let url = "http://www.softwaredefinedtalk.com/rss";
-  // let url = req.query.feedUrl;
+app.post('/channel', (req, res) => {
+  // let url = "http://www.softwaredefinedtalk.com/rss";
+  let url = req.query.feedUrl;
   request(url)
   .then(function(results) {
     let xml = results.body;
     parseString(xml, function(err, result) {
-      let tracks = result.rss.channel[0].item.map((obj) => {
-        let url = obj.enclosure[0].$.url;
-        let title = obj.title;
-        let track = {
-          title: title,
-          url: url
-        };
-        return track;
-      });
+      let tracks = result.rss.channel.map((ch) => {
+        let channel = {
+          title: ch.title,
+          pubDate: ch.pubDate,
+          summary: ch['itunes:summary'],
+          author: ch['itunes:author'],
+          description: ch.description,
+          image: ch['itunes:image'][0].$.href
+        }
+        channel.episodes = ch.item.map((obj) => {
+          let track = {
+          title: obj.title,
+          url: obj.enclosure[0].$.url,
+          };
+          return track;
+        })
+        return channel;
+      })
       res.status(200).send(tracks);
     });
   })
