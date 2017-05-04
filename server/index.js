@@ -18,7 +18,7 @@ app.get('/', function (req, res) {
 });
 
 app.post('/search', (req, res) => {
-  let url = `https://itunes.apple.com/search?term=${req.query.search}&country=US&entity=podcast&media=podcast&limit=10`;
+  let url = `https://itunes.apple.com/search?term=${req.body.search}&country=US&entity=podcast&media=podcast&limit=10`;
   request(url)
   .then(function(results) {
     let data = JSON.parse(results.body).results;
@@ -52,8 +52,8 @@ app.post('/search', (req, res) => {
 });
 
 app.get('/podcast', (req, res) => {
-  let url = "http://www.softwaredefinedtalk.com/rss";
-  // let url = req.query.feedUrl;
+  // let url = "http://www.softwaredefinedtalk.com/rss";
+  let url = req.body.feedUrl;
   request(url)
   .then(function(results) {
     let xml = results.body;
