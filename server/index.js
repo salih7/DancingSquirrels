@@ -47,7 +47,7 @@ app.post('/search', (req, res) => {
   });
 });
 
-app.get('/feed', (req, res) => {
+app.post('/feed', (req, res) => {
   let url = "http://www.softwaredefinedtalk.com/rss";
   // let url = req.query.feedUrl;
   request(url)
