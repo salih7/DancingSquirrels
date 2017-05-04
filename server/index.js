@@ -17,7 +17,7 @@ app.get('/', function (req, res) {
   res.status(200).sendFile('/index.html');
 });
 
-app.get('/search', (req, res) => {
+app.post('/search', (req, res) => {
   let url = `https://itunes.apple.com/search?term=${req.query.search}&country=US&entity=podcast&media=podcast&limit=10`;
   request(url)
   .then(function(results) {
