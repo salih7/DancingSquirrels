@@ -6,6 +6,7 @@ import Search from './components/Search.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.search = this.search.bind(this);
   }
 
   search(query) {
@@ -18,7 +19,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Search />
+        <Search onSearch={this.search} />
       </div>
     )
   }

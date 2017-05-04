@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Search extends React.Component {
   constructor(props) {
@@ -7,11 +8,19 @@ class Search extends React.Component {
       query: ''
     };
     this.onChange = this.onChange.bind(this);
+    this.onSearch = this.onSearch.bind(this);
   }
 
   onChange(event) {
     this.setState({
       query: event.target.value
+    });
+  }
+
+  onSearch() {
+    this.props.onSearch(this.state.query);
+    this.setState({
+      query: ''
     });
   }
 
@@ -23,10 +32,14 @@ class Search extends React.Component {
           placeholder="Search for podcasts"
           onChange={this.onChange}
         />
-        <button>Go!</button>
+        <button onClick={this.onSearch}>Go!</button>
       </div>
     );
   }
+}
+
+Search.propTypes = {
+  onSearch: PropTypes.func.isRequired
 }
 
 export default Search;
