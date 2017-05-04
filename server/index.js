@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const request = Promise.promisify(require('request'));
-const parseString = require('xml2js').parseString;
+const parseString = require('xml2js-parser').parseString;
 
 
 const app = express();
@@ -18,7 +18,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/search', (req, res) => {
-  let url = `https://itunes.apple.com/search?term=${req.query.term}&country=US&entity=podcast&media=podcast$limit=1`;
+  let url = `https://itunes.apple.com/search?term=${req.query.search}&country=US&entity=podcast&media=podcast&limit=10`;
   request(url)
   .then(function(results) {
     let data = JSON.parse(results.body).results;
@@ -28,10 +28,15 @@ app.get('/search', (req, res) => {
         collectionId: item.collectionId,
         trackId: item.trackId,
         artistName: item.artistName,
+        collectionName: item.collectionName,
+        releaseDate: item.releaseDate,
         trackName: item.trackName,
         collectionViewUrl: item.collectionViewUrl,
         feedUrl: item.feedUrl,
-        artworkUrl30: item.artworkUrl30
+        artworkUrl30: item.artworkUrl30,
+        trackCount: item.trackCount,
+        primaryGenreName: item.primaryGenreName,
+        genres: item.genres
       };
       return track;
     });
@@ -43,7 +48,8 @@ app.get('/search', (req, res) => {
 });
 
 app.get('/feed', (req, res) => {
-  let url = req.query.feedUrl;
+  let url = "http://www.softwaredefinedtalk.com/rss";
+  // let url = req.query.feedUrl;
   request(url)
   .then(function(results) {
     let xml = results.body;
