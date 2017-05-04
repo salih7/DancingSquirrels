@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const request = Promise.promisify(require('request'));
 const parseString = require('xml2js-parser').parseString;
+const db = require('../db/index');
 
 
 const app = express();
@@ -51,16 +52,18 @@ app.post('/search', (req, res) => {
   });
 });
 
+
 app.post('/podcast', (req, res) => {
-  // let url = "http://www.softwaredefinedtalk.com/rss";
-  console.log(req.body.feedUrl);
-  let url = req.body.feedUrl;
+  let url = "http://www.softwaredefinedtalk.com/rss";
+  // let url = req.body.feedUrl;
+  let collectionId = req.body.collectionId;
   request(url)
   .then(function(results) {
     let xml = results.body;
     parseString(xml, function(err, result) {
       let podcasts = result.rss.channel.map((ch) => {
         let podcast = {
+          collectionId: collectionId,
           title: ch.title,
           pubDate: ch.pubDate,
           summary: ch['itunes:summary'],
@@ -70,14 +73,17 @@ app.post('/podcast', (req, res) => {
         }
         podcast.episodes = ch.item.map((obj) => {
           let track = {
-          title: obj.title,
-          url: obj.enclosure[0].$.url,
+            collectionId: collectionId,
+            title: obj.title,
+            url: obj.enclosure[0].$.url,
+            duration: obj.duration,
+            pubDate: obj.pubDate
           };
           return track;
         })
         return podcast;
       })
-      res.status(200).send(podcasts);
+      res.status(200).send(result.rss.channel);
     });
   })
   .catch(function(err) {
