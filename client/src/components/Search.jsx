@@ -4,22 +4,13 @@ import PropTypes from 'prop-types';
 class Search extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      query: ''
-    };
-    this.onChange = this.onChange.bind(this);
+
     this.onSearch = this.onSearch.bind(this);
   }
 
-  onChange(event) {
-    this.setState({
-      query: event.target.value
-    });
-  }
-
   onSearch() {
-    console.log(this.state.query);
-    this.props.onSearch(this.state.query);
+    console.log(this._query.value);
+    this.props.onSearch(this._query.value);
   }
 
   render() {
@@ -29,6 +20,7 @@ class Search extends React.Component {
           type='text' 
           placeholder="Search for podcasts"
           onChange={this.onChange}
+          ref={(input) => this._query = input }
         />
         <button onClick={this.onSearch}>Go!</button>
       </div>
