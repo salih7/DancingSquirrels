@@ -2,7 +2,6 @@ import React from 'react';
 import $ from 'jquery';
 import Search from './Search.jsx';
 import PodcastList from './PodcastList.jsx'
-import Layout from '../layout/Layout.jsx';
 
 class PodcastMain extends React.Component {
   constructor(props) {
@@ -27,9 +26,6 @@ class PodcastMain extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <Layout />
-        </div>
         <div>
           <Search onSearch={this.search} />
         </div>

@@ -24,6 +24,8 @@
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
     "request": "^2.81.0",
     "xml2js-parser": "^1.1.1",
     "babel-cli": "^6.7.5",
