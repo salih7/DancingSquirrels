@@ -1,10 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import Search from './components/Search.jsx';
-import PodcastList from './components/PodcastList.jsx'
+import Search from './Search.jsx';
+import PodcastList from './PodcastList.jsx'
 
-class App extends React.Component {
+class PodcastMain extends React.Component {
   constructor(props) {
     super(props);
     this.search = this.search.bind(this);
@@ -12,8 +11,6 @@ class App extends React.Component {
       podcasts: []
     }
   }
-
-
 
   search(query) {
     //console.log(query);
@@ -40,4 +37,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+export default PodcastMain;
