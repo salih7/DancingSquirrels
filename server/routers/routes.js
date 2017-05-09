@@ -10,6 +10,16 @@ router.route('/')
     res.status(200).sendFile('/index.html');
   })
 
+router.route('/login')
+  .get((req, res) => {
+    res.status(200).sendFile('/login.html');
+  })
+
+router.route('/signup')
+  .get((req, res) => {
+    res.status(200).sendFile('/signup.html');
+  })
+
 router.route('/search')
   .post((req, res) => {
     let url = `https://itunes.apple.com/search?term=${req.body.search}&country=US&entity=podcast&media=podcast&limit=10`;

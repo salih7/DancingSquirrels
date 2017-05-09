@@ -6,4 +6,4 @@ module.exports = {
       database: 'podiocast'
     }
   }
-}
+};
