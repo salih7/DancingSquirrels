@@ -9,13 +9,13 @@ class Search extends React.Component {
   }
 
   onSearch() {
-    console.log(this._query.value);
+    // console.log(this._query.value);
     this.props.onSearch(this._query.value);
   }
 
   render() {
     return (
-      <div>
+      <div className='search'>
         <input
           type='text'
           placeholder="Search for podcasts"

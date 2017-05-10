@@ -4,7 +4,7 @@ import PodcastListEntry from './PodcastListEntry.jsx';
 
 var PodcastList = function(props) {
   return (
-    <div>
+    <div className='podcast-wrapper'>
       {
         props.podcasts.map((podcast, itr) =>
           <PodcastListEntry key={itr} podcast={podcast} />

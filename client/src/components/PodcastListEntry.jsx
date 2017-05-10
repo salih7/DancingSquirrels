@@ -25,7 +25,7 @@ class PodcastListEntry extends React.Component {
       })
         .done((podcast) => {
           // when done renderEpisodes is true AND episodes is set to the results
-          console.log(podcast);
+          // console.log(podcast[0]);
           this.setState({
             podcast: podcast[0],
             renderEpisodes: true
@@ -36,20 +36,20 @@ class PodcastListEntry extends React.Component {
 
   render() {
     return (
-      <div>
-        <div onClick={this.onClickPodcast}><h2>{this.props.podcast.collectionName}</h2></div>
-        <div><img src={this.props.podcast.artworkUrl100} /></div>
-        <div><h5>Artist: {this.props.podcast.artistName}</h5></div>
+      <div className='podcast'>
+        <h2 onClick={this.onClickPodcast}>{this.props.podcast.collectionName}</h2>
+        <img src={this.props.podcast.artworkUrl100} />
+        <h5>Artist: {this.props.podcast.artistName}</h5>
         {
           this.state.renderEpisodes
-           ? <div>
+           ? <div className='podcast-episodes-wrapper'>
             {
-              this.state.podcast.episodes.map((episode) => {
+              this.state.podcast.item.map((episode, itr) => {
                 return (
-                  <div>
+                  <div key={itr} className='podcast-episode'>
                     <h3>Title: {episode.title}</h3>
                     <audio controls>
-                      <source src={episode.url} type="audio/mpeg" />
+                      <source src={episode.enclosure[0].$.url} type="audio/mpeg" />
                     </audio>
                   </div>
                 );

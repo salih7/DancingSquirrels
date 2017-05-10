@@ -16,7 +16,7 @@ class PodcastMain extends React.Component {
     //console.log(query);
     $.post('/search', { search: query })
       .done((results) => {
-        console.log(results);
+        // console.log(results);
         this.setState({
           podcasts: results
         });
@@ -25,13 +25,9 @@ class PodcastMain extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <Search onSearch={this.search} />
-        </div>
-        <div>
-          <PodcastList podcasts={this.state.podcasts} />
-        </div>
+      <div className='main-container'>
+        <Search onSearch={this.search} />
+        <PodcastList podcasts={this.state.podcasts} />
       </div>
     );
   }
