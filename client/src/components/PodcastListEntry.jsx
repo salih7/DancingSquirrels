@@ -31,7 +31,7 @@ class PodcastListEntry extends React.Component {
             renderEpisodes: true
           });
         });
-      }
+    }
   }
 
   render() {
@@ -41,7 +41,7 @@ class PodcastListEntry extends React.Component {
         <div><img src={this.props.podcast.artworkUrl100} /></div>
         <div><h5>Artist: {this.props.podcast.artistName}</h5></div>
         {
-          this.state.renderEpisodes 
+          this.state.renderEpisodes
            ? <div>
             {
               this.state.podcast.episodes.map((episode) => {
@@ -53,13 +53,13 @@ class PodcastListEntry extends React.Component {
                     </audio>
                   </div>
                 );
-              }).slice(0, 10) 
+              }).slice(0, 10)
             }
             </div>
            : null
         }
       </div>
-    ); 
+    );
   }
 }
 
@@ -70,7 +70,7 @@ class PodcastListEntry extends React.Component {
 //       <div><img src={props.podcast.artworkUrl30} /></div>
 //       <div>{props.podcast.artistName}</div>
 //       {
-//         //this.randomState 
+//         //this.randomState
 //         //  ? render
 //         //  : don't render
 //       }
@@ -80,6 +80,6 @@ class PodcastListEntry extends React.Component {
 
 PodcastListEntry.propTypes = {
   podcast: PropTypes.object.isRequired
-}
+};
 
 export default PodcastListEntry;

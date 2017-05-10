@@ -16,8 +16,8 @@ class Search extends React.Component {
   render() {
     return (
       <div>
-        <input 
-          type='text' 
+        <input
+          type='text'
           placeholder="Search for podcasts"
           onChange={this.onChange}
           ref={(input) => this._query = input }
@@ -30,6 +30,6 @@ class Search extends React.Component {
 
 Search.propTypes = {
   onSearch: PropTypes.func.isRequired
-}
+};
 
 export default Search;
