@@ -10,7 +10,8 @@
   "scripts": {
     "start": "npm run server-dev & npm run react-dev",
     "server-dev": "nodemon server/index.js",
-    "react-dev": "webpack -d --watch"
+    "react-dev": "webpack -d --watch",
+    "test": "mocha --compilers jsx:babel-core/register test"
   },
   "dependencies": {
     "bluebird": "^3.5.0",
@@ -37,7 +38,11 @@
     "webpack": "^2.4.1"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "chai": "^3.5.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "mocha": "^3.3.0",
+    "react-test-renderer": "^15.5.4",
+    "supertest": "^3.0.0"
   },
   "babel": {
     "presets": [
