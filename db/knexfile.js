@@ -1,12 +1,9 @@
-const db = process.env.DATABASE_URL || '127.0.0.1'
+const db = process.env.DATABASE_URL || { host: '127.0.0.1', database: 'podiocast' }
 
 module.exports = {
 
   development: {
     client: 'postgresql',
-    connection: {
-      host: db,
-      database: 'podiocast'
-    }
+    connection: db
   }
 };
