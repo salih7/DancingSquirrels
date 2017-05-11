@@ -2,11 +2,15 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
 
-      knex.schema.createTable('users', (table) => {
-      table.increments('uid').primary();
-      table.string('username');
-      table.string('password');
-      table.timestamps();
+    knex.schema.createTable('users', (table) => {
+      table.increments();
+      table.string('googleId');
+      table.string('facebookId');
+      table.string('githubId');
+      table.string('username').unique().notNullable();
+      table.string('password').notNullable();
+      table.boolean('admin').notNullable().defaultTo(false);
+      table.timestamp('created_at', true).defaultTo(knex.raw('now()')).notNullable();
     }),
 
     knex.schema.createTable('podcasts', (table) => {
@@ -29,7 +33,14 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.integer('user_id');
       table.integer('podcast_id');
+    }),
+
+    knex.schema.createTable('session', (table) => {
+      table.string('sid').notNullable().collate('default');
+      table.json('sess').notNullable();
+      table.timestamp('expire', 6).notNullable();
     })
+
   ])
 };
 
