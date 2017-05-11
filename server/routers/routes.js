@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.route('/')
   .get((req, res) => {
+    console.log('session', req)
     res.status(200).sendFile('/index.html');
   })
 
@@ -41,46 +42,12 @@ router.route('/podcast')
   .post((req, res) => {
     let url = req.body.feedUrl;
     let collectionId = req.body.collectionId;
-<<<<<<< HEAD
-    request(url)
-    .then(function(results) {
-      let xml = results.body;
-      parseString(xml, function(err, result) {
-        let podcasts = result.rss.channel.map((ch) => {
-          let podcast = {
-            collectionId: collectionId,
-            title: ch.title,
-            pubDate: ch.pubDate,
-            summary: ch['itunes:summary'],
-            author: ch['itunes:author'],
-            description: ch.description,
-            image: ch['itunes:image'][0].$.href
-          }
-          podcast.episodes = ch.item.map((obj) => {
-            let track = {
-              collectionId: collectionId,
-              title: obj.title,
-              url: obj.enclosure[0].$.url,
-              duration: obj.duration,
-              pubDate: obj.pubDate
-            };
-            return track;
-          })
-          return podcast;
-        })
-        res.status(200).send(podcasts);
-      });
-    })
-    .catch(function(err) {
-      res.status(404).send('Oopsies...seems we are down!');
-=======
     utils.grabEpisodes(url, collectionId, (err, results) => {
       if (results) {
         res.status(200).send(results);
       } else {
         res.status(404).send('Oopsies...seems we are down!');
       }
->>>>>>> Refactored server side and User model
     });
   });
 
