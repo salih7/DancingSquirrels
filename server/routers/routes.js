@@ -85,7 +85,7 @@ router.route('/podcast')
           })
           return podcast;
         })
-        res.status(200).send(result.rss.channel);
+        res.status(200).send(podcasts);
       });
     })
     .catch(function(err) {
