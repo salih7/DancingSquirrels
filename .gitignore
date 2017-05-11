@@ -31,4 +31,4 @@ bower_components/
 .DS_Store
 
 #client IDs and secrets
-/server/env/config.js
+server/env/config.js
