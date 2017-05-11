@@ -1,0 +1,90 @@
+/* Layout */
+
+body {
+  max-width: 960px;
+  margin: 0 auto 0 auto;
+}
+
+/* Top menu */
+
+.top-menu {
+  height: 35px;
+}
+
+.top-menu > ul {
+  background-color: #3E7780;
+  margin: 0;
+  padding: 5px 10px;
+  list-style: none;
+  text-align:center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.top-menu > ul > li {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 0 15px 0 10px;
+  border-right: 1px solid white;
+  font-size: 14px;
+  color: white;
+  text-transform: uppercase;
+}
+
+.top-menu > ul > li:last-child {
+  border: none;
+}
+
+.top-menu > ul > li a {
+  color: white;
+  text-decoration: none;
+}
+
+.top-menu > ul > li a:hover {
+  text-decoration: underline;
+}
+
+/* Podcast */
+
+.podcast-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.podcast {
+  padding: 10px;
+  margin: 20px;
+  flex: 1 100px;
+}
+
+.podcast img {
+  cursor: pointer;
+}
+
+.podcast-title-author:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Search */
+.search {
+  padding-left: 10px;
+  margin-left: 20px;
+  position: relative;
+  color: #aaa;
+}
+
+.search input {
+  text-indent: 25px;
+  width: 100%;
+  color: black;
+}
+.search .glyphicon-search {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+}

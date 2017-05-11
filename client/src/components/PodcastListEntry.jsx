@@ -25,41 +25,43 @@ class PodcastListEntry extends React.Component {
       })
         .done((podcast) => {
           // when done renderEpisodes is true AND episodes is set to the results
-          console.log(podcast);
+          // console.log(podcast[0]);
           this.setState({
             podcast: podcast[0],
             renderEpisodes: true
           });
         });
-      }
+    }
   }
 
   render() {
     return (
-      <div>
-        <div onClick={this.onClickPodcast}><h2>{this.props.podcast.collectionName}</h2></div>
-        <div><img src={this.props.podcast.artworkUrl100} /></div>
-        <div><h5>Artist: {this.props.podcast.artistName}</h5></div>
+      <div className='podcast'>
+        <img onClick={this.onClickPodcast} src={this.props.podcast.artworkUrl100} />
+        <div className='podcast-title-author'>
+          <h4 onClick={this.onClickPodcast}>{this.props.podcast.collectionName}</h4>
+          <h5 onClick={this.onClickPodcast}>{this.props.podcast.artistName}</h5>
+        </div>
         {
-          this.state.renderEpisodes 
-           ? <div>
+          this.state.renderEpisodes
+           ? <div className='podcast-episodes-wrapper'>
             {
-              this.state.podcast.episodes.map((episode) => {
+              this.state.podcast.episodes.map((episode, itr) => {
                 return (
-                  <div>
+                  <div key={itr} className='podcast-episode'>
                     <h3>Title: {episode.title}</h3>
                     <audio controls>
                       <source src={episode.url} type="audio/mpeg" />
                     </audio>
                   </div>
                 );
-              }).slice(0, 10) 
+              }).slice(0, 10)
             }
             </div>
            : null
         }
       </div>
-    ); 
+    );
   }
 }
 
@@ -70,7 +72,7 @@ class PodcastListEntry extends React.Component {
 //       <div><img src={props.podcast.artworkUrl30} /></div>
 //       <div>{props.podcast.artistName}</div>
 //       {
-//         //this.randomState 
+//         //this.randomState
 //         //  ? render
 //         //  : don't render
 //       }
@@ -80,6 +82,6 @@ class PodcastListEntry extends React.Component {
 
 PodcastListEntry.propTypes = {
   podcast: PropTypes.object.isRequired
-}
+};
 
 export default PodcastListEntry;

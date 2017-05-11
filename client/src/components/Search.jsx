@@ -8,21 +8,25 @@ class Search extends React.Component {
     this.onSearch = this.onSearch.bind(this);
   }
 
-  onSearch() {
-    console.log(this._query.value);
-    this.props.onSearch(this._query.value);
+  onSearch(event) {
+    // console.log(this._query.value);
+    if (event.charCode === 13) {
+      console.log(event.keyCode);
+      this.props.onSearch(this._query.value);
+    }
   }
 
   render() {
     return (
-      <div>
-        <input 
-          type='text' 
-          placeholder="Search for podcasts"
+      <div className='search'>
+        <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
+        <input
+          type='text'
+          placeholder="Search"
           onChange={this.onChange}
+          onKeyPress={this.onSearch}
           ref={(input) => this._query = input }
         />
-        <button onClick={this.onSearch}>Go!</button>
       </div>
     );
   }
@@ -30,6 +34,6 @@ class Search extends React.Component {
 
 Search.propTypes = {
   onSearch: PropTypes.func.isRequired
-}
+};
 
 export default Search;

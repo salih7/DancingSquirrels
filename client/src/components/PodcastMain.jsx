@@ -1,7 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import Search from './Search.jsx';
-import PodcastList from './PodcastList.jsx'
+import PodcastList from './PodcastList.jsx';
 
 class PodcastMain extends React.Component {
   constructor(props) {
@@ -9,7 +9,7 @@ class PodcastMain extends React.Component {
     this.search = this.search.bind(this);
     this.state = {
       podcasts: []
-    }
+    };
   }
 
   search(query) {
@@ -25,15 +25,11 @@ class PodcastMain extends React.Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <Search onSearch={this.search} />
-        </div>
-        <div>
-          <PodcastList podcasts={this.state.podcasts} />
-        </div>
+      <div className='main-container'>
+        <Search onSearch={this.search} />
+        <PodcastList podcasts={this.state.podcasts} />
       </div>
-    )
+    );
   }
 }
 

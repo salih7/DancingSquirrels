@@ -4,10 +4,10 @@ import PodcastListEntry from './PodcastListEntry.jsx';
 
 var PodcastList = function(props) {
   return (
-    <div>
+    <div className='podcast-wrapper'>
       {
-        props.podcasts.map((podcast) => 
-          <PodcastListEntry podcast={podcast} />
+        props.podcasts.map((podcast, itr) =>
+          <PodcastListEntry key={itr} podcast={podcast} />
         )
       }
     </div>
@@ -16,6 +16,6 @@ var PodcastList = function(props) {
 
 PodcastList.propTypes = {
   podcasts: PropTypes.array.isRequired
-}
+};
 
 export default PodcastList;
