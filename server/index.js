@@ -8,7 +8,6 @@ const session = require('express-session');
 const app = module.exports = express();
 
 app.port = process.env.PORT || 8080;
-app.env = process.env.NODE_ENV || 'development';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(require('morgan')('combined'));
 
 app.use(session({ 
-  secret: process.env.COOKIE_SECRET,
+  secret: process.env.COOKIE_SECRET || 'keyboard cat',
   resave: true,
   saveUninitialized: true,
   cookie: { maxAge: 60000 }
