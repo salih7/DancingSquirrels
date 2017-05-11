@@ -16,7 +16,7 @@ class PodcastMain extends React.Component {
     //console.log(query);
     $.post('/search', { search: query })
       .done((results) => {
-        // console.log(results);
+        console.log(results);
         this.setState({
           podcasts: results
         });

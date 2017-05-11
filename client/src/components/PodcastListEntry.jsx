@@ -37,9 +37,11 @@ class PodcastListEntry extends React.Component {
   render() {
     return (
       <div className='podcast'>
-        <h2 onClick={this.onClickPodcast}>{this.props.podcast.collectionName}</h2>
-        <img src={this.props.podcast.artworkUrl100} />
-        <h5>Artist: {this.props.podcast.artistName}</h5>
+        <img onClick={this.onClickPodcast} src={this.props.podcast.artworkUrl100} />
+        <div className='podcast-title-author'>
+          <h4 onClick={this.onClickPodcast}>{this.props.podcast.collectionName}</h4>
+          <h5 onClick={this.onClickPodcast}>{this.props.podcast.artistName}</h5>
+        </div>
         {
           this.state.renderEpisodes
            ? <div className='podcast-episodes-wrapper'>
