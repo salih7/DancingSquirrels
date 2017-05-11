@@ -14,11 +14,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(require('morgan')('combined'));
+
+console.log(process.env.DATABASE_URL)
+
 app.use(session({ 
-  secret: 'keyboard cat', 
-  resave: false, 
-  saveUnintialized: true,
-  cookie: { secure: true }
+  secret: process.env.COOKIE_SECRET,
+  resave: true,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 }
 }));
 
 app.use('/', express.static(path.join(__dirname + '/../client')));

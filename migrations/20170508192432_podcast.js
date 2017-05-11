@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
 
-      knex.schema.createTable('users', (table) => {
+    knex.schema.createTable('users', (table) => {
       table.increments();
       table.integer('googleId');
       table.string('facebookId');
@@ -32,7 +32,14 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.integer('user_id');
       table.integer('podcast_id');
+    }),
+
+    knex.schema.createTable('session', (table) => {
+      table.string('sid').notNullable().collate('default');
+      table.json('sess').notNullable();
+      table.timestamp('expire', 6).notNullable();
     })
+
   ])
 };
 

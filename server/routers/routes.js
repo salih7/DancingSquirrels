@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.route('/')
   .get((req, res) => {
+    console.log('session', req)
     res.status(200).sendFile('/index.html');
   })
 
