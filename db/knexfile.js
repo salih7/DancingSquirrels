@@ -1,4 +1,4 @@
-const db = process.env.DATABASE_URL || { host: '127.0.0.1', database: 'podiocast' }
+const db = process.env.DATABASE_URL || { database: 'podiocast' };
 
 module.exports = {
 
