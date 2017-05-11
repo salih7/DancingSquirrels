@@ -15,8 +15,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(require('morgan')('combined'));
 
-console.log(process.env.DATABASE_URL)
-
 app.use(session({ 
   secret: process.env.COOKIE_SECRET,
   resave: true,
