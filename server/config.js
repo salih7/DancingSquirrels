@@ -6,21 +6,12 @@ const session = require('express-session');
 app.use(passport.initialize());
 app.use(passport.session());
 
-var domain;
 
-if (app.env === 'production') {
-  domain = 'https://podiocast.herokuapp.com/';
-} else if (app.env === 'staging') {
-  domain = 'https://podiocast-staging.herokuapp.com/';
-} else {
-  domain = `http://localhost:${app.port}/`;
-}
+passport.use(auth.facebookStrategy('/auth/facebook/return'));
 
-passport.use(auth.facebookStrategy(`${domain}auth/facebook/return`));
+passport.use(auth.googleStrategy('/auth/google/return'));
 
-passport.use(auth.googleStrategy(`${domain}auth/google/return`));
-
-passport.use(auth.githubStrategy(`${domain}auth/github/return`));
+passport.use(auth.githubStrategy('/auth/github/return'));
 
 passport.use(auth.localStrategy());
 
