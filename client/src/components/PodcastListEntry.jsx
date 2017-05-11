@@ -46,12 +46,12 @@ class PodcastListEntry extends React.Component {
           this.state.renderEpisodes
            ? <div className='podcast-episodes-wrapper'>
             {
-              this.state.podcast.item.map((episode, itr) => {
+              this.state.podcast.episodes.map((episode, itr) => {
                 return (
                   <div key={itr} className='podcast-episode'>
                     <h3>Title: {episode.title}</h3>
                     <audio controls>
-                      <source src={episode.enclosure[0].$.url} type="audio/mpeg" />
+                      <source src={episode.url} type="audio/mpeg" />
                     </audio>
                   </div>
                 );
