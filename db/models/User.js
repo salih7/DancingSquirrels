@@ -22,6 +22,48 @@ const insertOne = (username, password, cb) => {
   })
 }
 
+const fetchOneExternal = (username, password, cb) => {
+  User
+  .where('username', username)
+  .fetch()
+  .then((user) => {
+    if (!user) {
+      return cb(null, false);
+    } else {
+      return cb(null, true);
+    }
+  })
+  .catch((err) => {
+    return cb(err, null);
+  })
+}
+
+const insertOneExternal = (username, password, provider, id, cb) => {
+  let options = {
+    username: username
+  }
+  if (provider === 'facebook') {
+    options.facebookId = id;
+  } else if (provider === 'google') {
+    options.googleId = id;
+  } else if (provider === 'github') {
+    options.githubId = id;
+  }
+  bcrypt.hash(password, saltRounds, (err, hash) => {
+    options.password = hash;
+
+    User
+    .forge(options)
+    .save()
+    .then((data) => {
+      return cb(null, data);
+    })
+    .catch((err) => {
+      return cb(err, null);
+    })
+  })
+}
+
 const comparePasswords = (username, password, cb) => {
   User
   .where('username', username)
@@ -45,3 +87,5 @@ const comparePasswords = (username, password, cb) => {
 module.exports.User = User;
 module.exports.insertOne = insertOne;
 module.exports.comparePasswords = comparePasswords;
+module.exports.fetchOneExternal = fetchOneExternal;
+module.exports.insertOneExternal = insertOneExternal;

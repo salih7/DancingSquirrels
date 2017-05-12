@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import PodcastMain from './components/PodcastMain.jsx';
+import UserHomePage from './components/UserHomePage.jsx';
 import PodcastEpisodes from './components/PodcastEpisodes.jsx';
 import Login from './components/Login.jsx';
 import Signup from './components/Signup.jsx';
@@ -83,7 +84,14 @@ class App extends React.Component {
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
             <Route path="/podcasts/episodes" 
-                   component={() => (<PodcastEpisodes podcastEpisodes={this.state.podcastEpisodes} /> )} /> 
+                   component={() => (<PodcastEpisodes podcastEpisodes={this.state.podcastEpisodes} /> )} />
+            <Route
+              name="user"
+              path="/user/:username"
+              component={() => (<UserHomePage
+                                  onSearch={this.onSearch}
+                                  podcasts={this.state.podcasts}
+                                  onClickPodcast={this.onClickPodcast}/> )} />
                                              
 
           </Switch>

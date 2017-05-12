@@ -42,7 +42,7 @@ app.get('/auth/facebook/return',
         console.error(err);
       }
     })
-    res.redirect('/#/');
+    res.redirect(`/#/user/${req.session.passport.user}`);
   });
 
 app.get('/auth/google/return',
@@ -53,7 +53,7 @@ app.get('/auth/google/return',
         console.error(err);
       }
     })
-    res.redirect('/#/');
+    res.redirect(`/#/user/${req.session.passport.user}`);
   });
 
 app.get('/auth/github/return',
@@ -64,7 +64,7 @@ app.get('/auth/github/return',
         console.error(err);
       }
     })
-    res.redirect('/#/');
+    res.redirect(`/#/user/${req.session.passport.user}`);
   });
 
 app.post('/login/local', 

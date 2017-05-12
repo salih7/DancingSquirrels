@@ -5,6 +5,7 @@ const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const GithubStrategy = require('passport-github2').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const UserModel = require('../../db/models/User.js');
+const authHelpers = require('./authHelpers.js');
 
 const facebookStrategy = (callbackURL) => {
   return new FacebookStrategy({
@@ -14,6 +15,7 @@ const facebookStrategy = (callbackURL) => {
     passReqToCallback: true
   },
   function(request, accessToken, refreshToken, profile, cb) {
+    authHelpers.insertExternal(profile);
     cb(null, profile.id);
   });
 };
@@ -26,6 +28,7 @@ const googleStrategy = (callbackURL) => {
     passReqToCallback: true
   },
   function(request, accessToken, refreshToken, profile, done) {
+    authHelpers.insertExternal(profile);
     done(null, profile.id);
   });
 };
@@ -38,6 +41,7 @@ const githubStrategy = (callbackURL) => {
     passReqToCallback: true
   },
   function(request, accessToken, refreshToken, profile, done) {
+    authHelpers.insertExternal(profile);
     done(null, profile.id);
   });
 };

@@ -37,6 +37,7 @@ exports.up = function(knex, Promise) {
 
     knex.schema.createTable('session', (table) => {
       table.string('sid').notNullable().collate('default');
+      table.string('username')
       table.json('sess').notNullable();
       table.timestamp('expire', 6).notNullable();
     })
@@ -50,5 +51,6 @@ exports.down = function(knex, Promise) {
         knex.schema.dropTable('podcasts'),
         knex.schema.dropTable('episodes'),
         knex.schema.dropTable('user_episodes'),
+        knex.schema.dropTable('session')
     ])
 };
