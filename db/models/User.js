@@ -27,8 +27,9 @@ const fetchOneExternal = (username, password, cb) => {
   .where('username', username)
   .fetch()
   .then((user) => {
+    console.log(user)
     if (!user) {
-      return cb(null, false);
+      return cb(null, null);
     } else {
       return cb(null, true);
     }
@@ -75,7 +76,7 @@ const comparePasswords = (username, password, cb) => {
       let hash = user.attributes.password;
       bcrypt.compare(password, hash, (err, res) => {
         if (res) {
-          return cb(null, true);
+          return cb(null, username);
         } else {
           return cb(null, false);
         }

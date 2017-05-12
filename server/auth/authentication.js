@@ -75,5 +75,5 @@ app.post('/login/local',
         console.error(err);
       }
     })
-    res.send('validPassword');
+    res.send({ user: req.session.passport.user });
   });
