@@ -29,7 +29,6 @@ class App extends React.Component {
   }
 
   onSearch(query) {
-    //console.log(query);
     $.post('/search', { search: query })
       .done((results) => {
         console.log(results);
@@ -58,7 +57,6 @@ class App extends React.Component {
   }
 
   getHomePage() {
-    console.log('clicked');
     $.get('/topTen')
       .done((results) => {
         this.setState({
