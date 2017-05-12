@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import PodcastMain from './components/PodcastMain.jsx';
+import PodcastEpisodes from './components/PodcastEpisodes.jsx';
 import Login from './components/Login.jsx';
 import Signup from './components/Signup.jsx';
 import Layout from './layout/Layout.jsx';
@@ -16,8 +17,16 @@ class App extends React.Component {
       podcastEpisodes: {}
     };
 
+    this.clearSearch = this.clearSearch.bind(this);
     this.onSearch = this.onSearch.bind(this);
     this.onClickPodcast = this.onClickPodcast.bind(this);
+  }
+
+  clearSearch() {
+    this.setState({
+      podcasts: [],
+      podcastEpisodes: {}
+    });
   }
 
   onSearch(query) {
@@ -31,12 +40,8 @@ class App extends React.Component {
       });
   }
 
-  onClickPodcast(feedUrl, collectionId) {
+  onClickPodcast(feedUrl, collectionId, callback) {
     // post request to the server
-    this.setState({
-      podcasts: []
-    });
-
     $.post('/podcast', {
       feedUrl: feedUrl,
       collectionId: collectionId
@@ -49,7 +54,7 @@ class App extends React.Component {
         });
         console.log('podcastEpisodes: ', this.state.podcastEpisodes);
         console.log('podcasts: ', this.state.podcasts);
-
+        callback();
       });
   }
 
@@ -57,7 +62,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Layout />
+          <Layout clearSearch={this.clearSearch}/>
           <Switch>
             <Route
               name="root"
@@ -65,10 +70,12 @@ class App extends React.Component {
               component={() => (<PodcastMain
                                   onSearch={this.onSearch}
                                   podcasts={this.state.podcasts}
-                                  podcastEpisodes={this.state.podcastEpisodes}
-                                  onClickPodcast={this.onClickPodcast}/> )}/>
+                                  onClickPodcast={this.onClickPodcast}/> )} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/podcasts/episodes" 
+                   component={() => (<PodcastEpisodes podcastEpisodes={this.state.podcastEpisodes} /> )} /> 
+                                             
           </Switch>
         </div>
       </Router>

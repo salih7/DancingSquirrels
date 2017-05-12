@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import PodcastListEntry from './PodcastListEntry.jsx';
 
-var PodcastList = function(props) {
+const PodcastList = function(props) {
   return (
     <div className='podcast-wrapper'>
       {
