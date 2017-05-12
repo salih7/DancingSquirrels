@@ -7,7 +7,10 @@ var PodcastList = function(props) {
     <div className='podcast-wrapper'>
       {
         props.podcasts.map((podcast, itr) =>
-          <PodcastListEntry key={itr} podcast={podcast} />
+          <PodcastListEntry
+            key={itr}
+            podcast={podcast}
+            onClickPodcast={props.onClickPodcast}/>
         )
       }
     </div>
@@ -15,7 +18,8 @@ var PodcastList = function(props) {
 };
 
 PodcastList.propTypes = {
-  podcasts: PropTypes.array.isRequired
+  podcasts: PropTypes.array.isRequired,
+  onClickPodcast: PropTypes.func.isRequired
 };
 
 export default PodcastList;
