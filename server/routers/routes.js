@@ -78,6 +78,8 @@ router.route('/login/local')
     res.redirect('/#/local/login');
   });
 
+
+
 router.route('/signup')
   .post((req, res) => {
     UserModel.insertOne(req.body.username, req.body.password, (results)=> {
