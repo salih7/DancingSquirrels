@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-let PodcastEpisodes = (props) => {
+const PodcastEpisodes = (props) => {
   return (
     <div className='podcast-episodes'>
       <h1>{props.podcastEpisodes.title}</h1>

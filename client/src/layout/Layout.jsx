@@ -7,7 +7,7 @@ class Layout extends React.Component {
       <div className="top-menu">
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link to="/" onClick={this.props.clearSearchResults}>Home</Link>
           </li>
           <li>
             <Link to="/login">Login</Link>

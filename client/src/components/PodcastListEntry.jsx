@@ -47,21 +47,36 @@ import $ from 'jquery';
 //   }
 // }
 
-var PodcastListEntry = function(props) {
-  let onClickPodcast = () => {
-    props.onClickPodcast(props.podcast.feedUrl, props.podcast.collectionId);
-  };
+class PodcastListEntry extends React.Component {
+  constructor(props) {
+    super(props);
 
-  return (
-    <div className='podcast'>
-      <img onClick={onClickPodcast} src={props.podcast.artworkUrl100} />
-      <div className='podcast-title-author'>
-        <h4 onClick={onClickPodcast}>{props.podcast.collectionName}</h4>
-        <h5 onClick={onClickPodcast}>{props.podcast.artistName}</h5>
+    this.onClickPodcast = this.onClickPodcast.bind(this);
+  } 
+  
+  onClickPodcast() {
+    this.props.onClickPodcast(this.props.podcast.feedUrl, this.props.podcast.collectionId, () => {
+      this.context.router.history.push('/podcasts/episodes');
+    });
+  }
+
+  render() {
+    return (
+      <div className='podcast'>
+        <img onClick={this.onClickPodcast} src={this.props.podcast.artworkUrl100} />
+        <div className='podcast-title-author'>
+          <h4 onClick={this.onClickPodcast}>{this.props.podcast.collectionName}</h4>
+          <h5 onClick={this.onClickPodcast}>{this.props.podcast.artistName}</h5>
+        </div>
       </div>
-    </div>
-  );
-};
+    );    
+  }
+
+}
+
+PodcastListEntry.contextTypes = {
+  router: PropTypes.object
+}
 
 PodcastListEntry.propTypes = {
   podcast: PropTypes.object.isRequired,
