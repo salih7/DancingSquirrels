@@ -13,7 +13,7 @@ class Layout extends React.Component {
             <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/signup">Signup</Link>
+            <Link to="/logout" onClick={this.props.logoutUser}>Logout</Link>
           </li>
         </ul>
       </div>

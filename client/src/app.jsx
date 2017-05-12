@@ -21,6 +21,7 @@ class App extends React.Component {
     this.clearSearchResults = this.clearSearchResults.bind(this);
     this.onSearch = this.onSearch.bind(this);
     this.onClickPodcast = this.onClickPodcast.bind(this);
+    this.logoutUser = this.logoutUser.bind(this);
   }
 
   componentDidMount() {
@@ -33,10 +34,10 @@ class App extends React.Component {
   }
 
   clearSearchResults() {
-    this.setState({
-      podcasts: [],
-      podcastEpisodes: {}
-    });
+    // this.setState({
+    //   podcasts: [],
+    //   podcastEpisodes: {}
+    // });
   }
 
   onSearch(query) {
@@ -68,11 +69,16 @@ class App extends React.Component {
       });
   }
 
+  logoutUser() {
+    $.get('/logout');
+  }
+
   render() {
     return (
       <Router>
         <div>
-          <Layout clearSearchResults={this.clearSearchResults}/>
+          <Layout clearSearchResults={this.clearSearchResults}
+                  logoutUser={this.logoutUser}/>
           <Switch>
             <Route
               name="root"
@@ -82,7 +88,6 @@ class App extends React.Component {
                                   podcasts={this.state.podcasts}
                                   onClickPodcast={this.onClickPodcast}/> )} />
             <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
             <Route path="/podcasts/episodes" 
                    component={() => (<PodcastEpisodes podcastEpisodes={this.state.podcastEpisodes} /> )} />
             <Route
