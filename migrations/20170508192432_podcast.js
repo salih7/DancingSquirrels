@@ -50,5 +50,6 @@ exports.down = function(knex, Promise) {
         knex.schema.dropTable('podcasts'),
         knex.schema.dropTable('episodes'),
         knex.schema.dropTable('user_episodes'),
+        knex.schema.dropTable('session')
     ])
 };
