@@ -23,7 +23,6 @@ class Search extends React.Component {
         <input
           type='text'
           placeholder="Search"
-          onChange={this.onChange}
           onKeyPress={this.onSearch}
           ref={(input) => this._query = input }
         />

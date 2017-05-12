@@ -13,10 +13,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       podcasts: [],
-      episodes: []
+      podcastEpisodes: {}
     };
 
     this.onSearch = this.onSearch.bind(this);
+    this.onClickPodcast = this.onClickPodcast.bind(this);
   }
 
   onSearch(query) {
@@ -30,13 +31,42 @@ class App extends React.Component {
       });
   }
 
+  onClickPodcast(feedUrl, collectionId) {
+    // post request to the server
+    this.setState({
+      podcasts: []
+    });
+
+    $.post('/podcast', {
+      feedUrl: feedUrl,
+      collectionId: collectionId
+    })
+      .done((podcastEpisodes) => {
+        // when done renderEpisodes is true AND episodes is set to the results
+        // console.log(podcastEpisodes[0]);
+        this.setState({
+          podcastEpisodes: podcastEpisodes[0],
+        });
+        console.log('podcastEpisodes: ', this.state.podcastEpisodes);
+        console.log('podcasts: ', this.state.podcasts);
+
+      });
+  }
+
   render() {
     return (
       <Router>
         <div>
           <Layout />
           <Switch>
-            <Route name="root" exact path="/" component={() => (<PodcastMain onSearch={this.onSearch} podcasts={this.state.podcasts} /> )}/>
+            <Route
+              name="root"
+              exact path="/"
+              component={() => (<PodcastMain
+                                  onSearch={this.onSearch}
+                                  podcasts={this.state.podcasts}
+                                  podcastEpisodes={this.state.podcastEpisodes}
+                                  onClickPodcast={this.onClickPodcast}/> )}/>
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
           </Switch>
