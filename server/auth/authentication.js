@@ -1,19 +1,19 @@
 const passport = require('passport');
-const app = require('./index.js');
-const auth = require('./auth.js')
+const app = require('../index.js');
+const strategies = require('./strategies.js')
 const session = require('express-session');
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 
-passport.use(auth.facebookStrategy('/auth/facebook/return'));
+passport.use(strategies.facebookStrategy('/auth/facebook/return'));
 
-passport.use(auth.googleStrategy('/auth/google/return'));
+passport.use(strategies.googleStrategy('/auth/google/return'));
 
-passport.use(auth.githubStrategy('/auth/github/return'));
+passport.use(strategies.githubStrategy('/auth/github/return'));
 
-passport.use(auth.localStrategy());
+passport.use(strategies.localStrategy());
 
 passport.serializeUser(function(user, cb) {
   cb(null, user);
@@ -42,7 +42,7 @@ app.get('/auth/facebook/return',
         console.error(err);
       }
     })
-    res.redirect('/#/');
+    res.redirect('/#/user');
   });
 
 app.get('/auth/google/return',
@@ -53,7 +53,7 @@ app.get('/auth/google/return',
         console.error(err);
       }
     })
-    res.redirect('/#/');
+    res.redirect('/#/user');
   });
 
 app.get('/auth/github/return',
@@ -64,7 +64,7 @@ app.get('/auth/github/return',
         console.error(err);
       }
     })
-    res.redirect('/#/');
+    res.redirect('/#/user');
   });
 
 app.post('/login/local', 

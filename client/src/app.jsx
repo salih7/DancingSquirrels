@@ -5,6 +5,7 @@ import PodcastMain from './components/PodcastMain.jsx';
 import PodcastEpisodes from './components/PodcastEpisodes.jsx';
 import Login from './components/Login.jsx';
 import Signup from './components/Signup.jsx';
+import UserHomePage from './components/UserHomePage.jsx';
 import Layout from './layout/Layout.jsx';
 
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
@@ -76,6 +77,7 @@ class App extends React.Component {
             <Route path="/podcasts/episodes" 
                    component={() => (<PodcastEpisodes podcastEpisodes={this.state.podcastEpisodes} /> )} /> 
                                              
+
           </Switch>
         </div>
       </Router>

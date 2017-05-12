@@ -29,7 +29,7 @@ class LocalLogin extends React.Component {
     }
     $.post('/login/local', options, (results) => {
       if (results === 'validPassword') {
-        this.props.history.push('/');
+        this.props.history.push('/user');
       }
     });
     e.preventDefault();

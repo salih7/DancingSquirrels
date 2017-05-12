@@ -1,10 +1,10 @@
 const passport = require('passport');
-const app = require('./index.js');
+const app = require('../index.js');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const GithubStrategy = require('passport-github2').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
-const UserModel = require('../db/models/User.js');
+const UserModel = require('../../db/models/User.js');
 
 const facebookStrategy = (callbackURL) => {
   return new FacebookStrategy({
