@@ -9,8 +9,8 @@ const authHelpers = require('./authHelpers.js');
 
 const facebookStrategy = (callbackURL) => {
   return new FacebookStrategy({
-    clientID: process.env.FacebookClientID || require('./env/config.js').FACEBOOK.ID,
-    clientSecret: process.env.FacebookClientSecret || require('./env/config.js').FACEBOOK.SECRET,
+    clientID: process.env.FacebookClientID || require('../env/config.js').FACEBOOK.ID,
+    clientSecret: process.env.FacebookClientSecret || require('../env/config.js').FACEBOOK.SECRET,
     callbackURL: callbackURL,
     passReqToCallback: true
   },
@@ -22,8 +22,8 @@ const facebookStrategy = (callbackURL) => {
 
 const googleStrategy = (callbackURL) => {
   return new GoogleStrategy({
-    clientID: process.env.GoogleClientID || require('./env/config.js').GOOGLE.ID,
-    clientSecret: process.env.GoogleClientSecret || require('./env/config.js').GOOGLE.SECRET,
+    clientID: process.env.GoogleClientID || require('../env/config.js').GOOGLE.ID,
+    clientSecret: process.env.GoogleClientSecret || require('../env/config.js').GOOGLE.SECRET,
     callbackURL: callbackURL,
     passReqToCallback: true
   },
@@ -35,8 +35,8 @@ const googleStrategy = (callbackURL) => {
 
 const githubStrategy = (callbackURL) => {
   return new GithubStrategy({
-    clientID: process.env.GitHubClientID || require('./env/config.js').GITHUB.ID,
-    clientSecret: process.env.GitHubClientSecret || require('./env/config.js').GITHUB.SECRET,
+    clientID: process.env.GitHubClientID || require('../env/config.js').GITHUB.ID,
+    clientSecret: process.env.GitHubClientSecret || require('../env/config.js').GITHUB.SECRET,
     callbackURL: callbackURL,
     passReqToCallback: true
   },
