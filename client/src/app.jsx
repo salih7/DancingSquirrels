@@ -5,7 +5,6 @@ import PodcastMain from './components/PodcastMain.jsx';
 import PodcastEpisodes from './components/PodcastEpisodes.jsx';
 import Login from './components/Login.jsx';
 import Signup from './components/Signup.jsx';
-import UserHomePage from './components/UserHomePage.jsx';
 import Layout from './layout/Layout.jsx';
 
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
@@ -21,6 +20,15 @@ class App extends React.Component {
     this.clearSearchResults = this.clearSearchResults.bind(this);
     this.onSearch = this.onSearch.bind(this);
     this.onClickPodcast = this.onClickPodcast.bind(this);
+  }
+
+  componentDidMount() {
+   $.get('/topTen')
+    .done((results) => {
+      this.setState({
+        podcasts: results
+      });
+    }) 
   }
 
   clearSearchResults() {
