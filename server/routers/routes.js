@@ -6,8 +6,16 @@ const router = express.Router();
 
 router.route('/')
   .get((req, res) => {
-    console.log('session', req)
     res.status(200).sendFile('/index.html');
+  })
+
+router.route('/topTen')
+  .get((req, res) => {
+    utils.fetchTopTen((err, results) => {
+      if (results) {
+        res.send(results);
+      }
+    })
   })
 
 router.route('/login/local')
@@ -29,7 +37,7 @@ router.route('/signup')
 router.route('/search')
   .post((req, res) => {
     let url = `https://itunes.apple.com/search?term=${req.body.search}&country=US&entity=podcast&media=podcast&limit=10`;
-    utils.grabCollections(url, (err, results) => {
+    utils.fetchCollections(url, (err, results) => {
       if (results) {
         res.status(200).send(results);
       } else {
@@ -42,7 +50,7 @@ router.route('/podcast')
   .post((req, res) => {
     let url = req.body.feedUrl;
     let collectionId = req.body.collectionId;
-    utils.grabEpisodes(url, collectionId, (err, results) => {
+    utils.fetchEpisodes(url, collectionId, (err, results) => {
       if (results) {
         res.status(200).send(results);
       } else {

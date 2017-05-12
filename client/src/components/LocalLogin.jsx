@@ -28,8 +28,10 @@ class LocalLogin extends React.Component {
       password: this.state.password
     }
     $.post('/login/local', options, (results) => {
-      if (results === 'validPassword') {
-        this.props.history.push('/');
+      if (results.user) {
+        this.props.history.push(`/user/${results.user}`);
+      } else {
+        alert('Invalid username or password');
       }
     });
     e.preventDefault();

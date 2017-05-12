@@ -5,4 +5,4 @@ const Episode = bookshelf.Model.extend({
   tableName: 'episodes'
 })
 
-module.exports = Episode
+module.exports = Episode;

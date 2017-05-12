@@ -2,13 +2,13 @@ const Promise = require('bluebird');
 const request = Promise.promisify(require('request'));
 const parseString = require('xml2js-parser').parseString;
 
-var grabCollections = (url, cb) => {
+const fetchCollections = (url, cb) => {
   request(url)
   .then(function(results) {
     let data = JSON.parse(results.body).results;
 
     let collections = data.map((item) => {
-      var collection = {
+      let collection = {
         collectionId: item.collectionId,
         trackId: item.trackId,
         artistName: item.artistName,
@@ -35,7 +35,7 @@ var grabCollections = (url, cb) => {
   })
 }
 
-var grabEpisodes = (url, collectionId, cb) => {
+const fetchEpisodes = (url, collectionId, cb) => {
    request(url)
   .then(function(results) {
     let xml = results.body;
@@ -70,6 +70,34 @@ var grabEpisodes = (url, collectionId, cb) => {
   });
 }
 
+const fetchCollectionsAsync = Promise.promisify(fetchCollections);
 
-module.exports.grabCollections = grabCollections;
-module.exports.grabEpisodes = grabEpisodes;
+const fetchTopTen = (cb) => {
+  let topTenFeedUrl = 'https://itunes.apple.com/us/rss/toppodcasts/limit=10/xml';
+
+  request(topTenFeedUrl)
+  .then(function(results) {
+    let xml = results.body;
+    parseString(xml, function(err, result) {
+      Promise.map(result.feed.entry, (collection) => {
+        let id = collection.id[0].$['im:id'];
+        let url = `https://itunes.apple.com/lookup?id=${id}`;
+        return fetchCollectionsAsync(url)
+        .then((result)=>{
+          return result[0];
+        })        
+      })
+      .then((collections) => {
+        cb(null, collections);
+      })
+    })
+  })
+  .catch((err) => {
+    cb(err, null);
+  })
+}
+
+
+module.exports.fetchCollections = fetchCollections;
+module.exports.fetchEpisodes = fetchEpisodes;
+module.exports.fetchTopTen = fetchTopTen
