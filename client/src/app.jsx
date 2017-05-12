@@ -17,12 +17,12 @@ class App extends React.Component {
       podcastEpisodes: {}
     };
 
-    this.clearSearch = this.clearSearch.bind(this);
+    this.clearSearchResults = this.clearSearchResults.bind(this);
     this.onSearch = this.onSearch.bind(this);
     this.onClickPodcast = this.onClickPodcast.bind(this);
   }
 
-  clearSearch() {
+  clearSearchResults() {
     this.setState({
       podcasts: [],
       podcastEpisodes: {}
@@ -62,7 +62,7 @@ class App extends React.Component {
     return (
       <Router>
         <div>
-          <Layout clearSearch={this.clearSearch}/>
+          <Layout clearSearchResults={this.clearSearchResults}/>
           <Switch>
             <Route
               name="root"
