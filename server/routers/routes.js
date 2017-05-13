@@ -1,11 +1,7 @@
 const express = require('express');
 const UserModel = require('../../db/models/User.js');
 const UserPodcastModel = require('../../db/models/User_Podcast.js');
-<<<<<<< HEAD
 const UserFavoritePodcastModel = require('../../db/models/User_Favorite_Podcast.js');
-
-=======
->>>>>>> Updated logout route to go back to homepage
 const utils = require('../utils.js');
 const session = require('express-session');
 const passport = require('passport');
