@@ -1,6 +1,7 @@
 const express = require('express');
 const UserModel = require('../../db/models/User.js');
 const UserPodcastModel = require('../../db/models/User_Podcast.js');
+const UserFavoritePodcastModel = require('../../db/models/User_Favorite_Podcast.js');
 
 const utils = require('../utils.js');
 const session = require('express-session');
@@ -11,7 +12,7 @@ const router = express.Router();
 router.route('/')
   .get((req, res) => {
     res.status(200).sendFile('/index.html');
-  })
+  });
 
 router.route('/topTen')
   .get((req, res) => {
@@ -19,10 +20,30 @@ router.route('/topTen')
       if (results) {
         res.send(results);
       }
-    })
-  })
+    });
+  });
 
-router.route('/onFavorite')
+router.route('/favorite/:id')
+  .delete((req, res) => {
+    console.log('req.params.id', req.params.id);
+    UserFavoritePodcastModel.destroy(req.params.id, (result) => {
+      res.send(result);
+    });
+  });
+
+router.route('/favorite')
+  .get((req, res) => {
+    console.log('req.body', req.query);
+    UserModel.fetch(req.query.username, (result) => {
+      console.log('favorite: ', result);
+      UserFavoritePodcastModel.fetchFavoritePodcasts(result.id, (data) => {
+        console.log('data', data);
+        res.send(data);
+      });
+    });
+  });
+
+router.route('/favorite')
   .post((req, res) => {
     // console.log('req', req);
     // console.log('req.session.passport.user', req.session.passport.user);
@@ -30,20 +51,23 @@ router.route('/onFavorite')
     UserModel.fetch(req.body.username, (result) => {
       let options = {
         user_id: result.id,
-        podcast_id: req.body.collectionId,
-        favorite: 'true'
+        feedUrl: req.body.feedUrl,
+        collectionId: req.body.collectionId,
+        artworkUrl100: req.body.artworkUrl100,
+        collectionName: req.body.collectionName,
+        artistName: req.body.artistName
       };
 
-      UserPodcastModel.insertOne(options, (data) => {
-        console.log('data', data);
+      UserFavoritePodcastModel.insertOne(options, (data) => {
+        res.send(data);
       });
     });
   });
 
 router.route('/login/local')
   .get((req, res) => {
-    res.redirect('/#/local/login')
-  })
+    res.redirect('/#/local/login');
+  });
 
 router.route('/signup')
   .post((req, res) => {
@@ -53,8 +77,8 @@ router.route('/signup')
       } else {
         res.send('success');
       }
-    })
-  })
+    });
+  });
 
 router.route('/search')
   .post((req, res) => {
@@ -65,7 +89,7 @@ router.route('/search')
       } else {
         res.status(404).send('We are experiencing some technical difficulties...');
       }
-    })
+    });
   });
 
 router.route('/podcast')

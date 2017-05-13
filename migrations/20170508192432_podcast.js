@@ -47,17 +47,27 @@ exports.up = function(knex, Promise) {
       table.integer('podcast_id');
       table.integer('rating');
       table.boolean('favorite');
+    }),
+
+    knex.schema.createTable('user_favorite_podcasts', (table) => {
+      table.increments('id').primary();
+      table.integer('user_id');
+      table.string('feedUrl');
+      table.string('collectionId').unique();
+      table.string('artworkUrl100');
+      table.string('collectionName');
+      table.string('artistName');
     })
 
-  ])
+  ]);
 };
 
 exports.down = function(knex, Promise) {
-   return Promise.all([
-        knex.schema.dropTable('users'),
-        knex.schema.dropTable('podcasts'),
-        knex.schema.dropTable('episodes'),
-        knex.schema.dropTable('user_episodes'),
-        knex.schema.dropTable('session')
-    ])
+  return Promise.all([
+    knex.schema.dropTable('users'),
+    knex.schema.dropTable('podcasts'),
+    knex.schema.dropTable('episodes'),
+    knex.schema.dropTable('user_episodes'),
+    knex.schema.dropTable('session')
+  ]);
 };
