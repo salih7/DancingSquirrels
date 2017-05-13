@@ -39,6 +39,23 @@ const fetchOneExternal = (username, password, cb) => {
   })
 }
 
+const fetch = (username, cb) => {
+  User
+  .where('username', username)
+  .fetch()
+  .then((user) => {
+    console.log(user)
+    if (!user) {
+      return cb('User not found');
+    } else {
+      return cb(user);
+    }
+  })
+  .catch((err) => {
+    return cb(err);
+  })
+}
+
 const insertOneExternal = (username, password, provider, id, cb) => {
   let options = {
     username: username
@@ -90,3 +107,4 @@ module.exports.insertOne = insertOne;
 module.exports.comparePasswords = comparePasswords;
 module.exports.fetchOneExternal = fetchOneExternal;
 module.exports.insertOneExternal = insertOneExternal;
+module.exports.fetch = fetch;

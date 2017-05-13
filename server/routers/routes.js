@@ -1,6 +1,10 @@
 const express = require('express');
 const UserModel = require('../../db/models/User.js');
+const UserPodcastModel = require('../../db/models/User_Podcast.js');
+
 const utils = require('../utils.js');
+const session = require('express-session');
+const passport = require('passport');
 
 const router = express.Router();
 
@@ -17,6 +21,24 @@ router.route('/topTen')
       }
     })
   })
+
+router.route('/onFavorite')
+  .post((req, res) => {
+    // console.log('req', req);
+    // console.log('req.session.passport.user', req.session.passport.user);
+    console.log('req.body', req.body);
+    UserModel.fetch(req.body.username, (result) => {
+      let options = {
+        user_id: result.id,
+        podcast_id: req.body.collectionId,
+        favorite: 'true'
+      };
+
+      UserPodcastModel.insertOne(options, (data) => {
+        console.log('data', data);
+      });
+    });
+  });
 
 router.route('/login/local')
   .get((req, res) => {

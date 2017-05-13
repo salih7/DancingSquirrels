@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import PodcastListEntry from './PodcastListEntry.jsx';
 
 const PodcastList = function(props) {
+
+
+
   return (
     <div className='podcast-wrapper'>
       {
@@ -10,7 +13,8 @@ const PodcastList = function(props) {
           <PodcastListEntry
             key={itr}
             podcast={podcast}
-            onClickPodcast={props.onClickPodcast}/>
+            onClickPodcast={props.onClickPodcast}
+            loggedIn={props.loggedIn}/>
         )
       }
     </div>

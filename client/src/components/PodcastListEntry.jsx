@@ -52,8 +52,19 @@ class PodcastListEntry extends React.Component {
     super(props);
 
     this.onClickPodcast = this.onClickPodcast.bind(this);
-  } 
-  
+    this.onFavorite = this.onFavorite.bind(this);
+  }
+
+  onFavorite() {
+    let hashArr = window.location.hash.split('/');
+    // console.log(hashArr[hashArr.length - 1]);
+    $.post('/onFavorite', {
+      username: hashArr[hashArr.length - 1],
+      collectionId: this.props.podcast.collectionId
+    })
+      .done(result => console.log(result));
+  }
+
   onClickPodcast() {
     this.props.onClickPodcast(this.props.podcast.feedUrl, this.props.podcast.collectionId, () => {
       this.context.router.history.push('/podcasts/episodes');
@@ -68,8 +79,9 @@ class PodcastListEntry extends React.Component {
           <h4 onClick={this.onClickPodcast}>{this.props.podcast.collectionName}</h4>
           <h5 onClick={this.onClickPodcast}>{this.props.podcast.artistName}</h5>
         </div>
+        <button onClick={this.onFavorite}>Favorite</button>
       </div>
-    );    
+    );
   }
 
 }
