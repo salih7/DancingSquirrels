@@ -9,6 +9,8 @@ const session = require('express-session');
 const passport = require('passport');
 
 const authHelpers = require('../auth/authHelpers.js');
+const sessionHelpers = require('../auth/sessionHelpers.js');
+const SessionModel = require('../../db/models/Session.js');
 
 
 const router = express.Router();
@@ -20,7 +22,9 @@ router.route('/')
 
 router.route('/logout')
   .get((req, res) => {
-    
+    req.session.destroy((err) => {
+      console.log(err);
+    })
   })
 
 router.route('/topTen')

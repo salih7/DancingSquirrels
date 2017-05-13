@@ -17,11 +17,6 @@ const insertExternal = (profile) => {
   })
 }
 
-const verifySession = (req, res, next) => {
-  console.log(req.params)
-  next();
-}
-
 const sessionHandler = (req) => {
   req.session.regenerate((err) => {
     if (err) {
@@ -31,5 +26,4 @@ const sessionHandler = (req) => {
 }
 
 module.exports.insertExternal = insertExternal;
-module.exports.verifySession = verifySession;
 module.exports.sessionHandler = sessionHandler;
