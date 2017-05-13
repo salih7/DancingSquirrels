@@ -2,7 +2,15 @@
 
 body {
   max-width: 1200px;
-  margin: 0 auto 0 auto;
+  margin: 80px auto auto auto;
+  position: relative;
+}
+
+h3 {
+  font-family: cursive;
+  font-weight: bolder;
+  color: #483D8B;
+  font-size: 200%;
 }
 
 /* Header */
@@ -47,6 +55,14 @@ header > input {
 
 .header-link:hover {
   color: white;
+}
+
+.header-link:not( :hover ) {
+  color: white;
+}
+
+.header-link:active {
+  color: yellow;
 }
 
 

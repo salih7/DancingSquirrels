@@ -5,8 +5,8 @@ import PodcastMain from './components/PodcastMain.jsx';
 import UserHomePage from './components/UserHomePage.jsx';
 import PodcastEpisodes from './components/PodcastEpisodes.jsx';
 import Login from './components/Login.jsx';
+import Search from './components/Search.jsx';
 import Signup from './components/Signup.jsx';
-import Layout from './layout/Layout.jsx';
 import ReactRouter from 'react-router';
 
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
@@ -15,11 +15,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentPodcastView: 'Top 10 Podcasts!',
       podcasts: [],
       podcastEpisodes: {},
       loggedIn: false
     };
 
+    this.currentPodcastView = this.currentPodcastView.bind(this);
     this.getHomePage = this.getHomePage.bind(this);
     this.onSearch = this.onSearch.bind(this);
     this.onClickPodcast = this.onClickPodcast.bind(this);
@@ -71,12 +73,20 @@ class App extends React.Component {
     $.get('/logout');
   }
 
+  currentPodcastView(newPage) {
+    this.setState({
+      currentPodcastView: newPage
+    });
+  }
+
   render() {
     return (
       <Router>
         <div>
-          <Layout getHomePage={this.getHomePage}
-                  logoutUser={this.logoutUser}/>
+          <Search onSearch={this.onSearch}
+                  getHomePage={this.getHomePage}
+                  logoutUser={this.logoutUser} 
+                  currentPodcastView={this.currentPodcastView}/>
           <Switch>
             <Route
               name="root"
@@ -84,7 +94,8 @@ class App extends React.Component {
               component={() => (<PodcastMain
                                   onSearch={this.onSearch}
                                   podcasts={this.state.podcasts}
-                                  onClickPodcast={this.onClickPodcast}/> )} />
+                                  onClickPodcast={this.onClickPodcast}
+                                  currentPodcastView={this.state.currentPodcastView} />)} />
             <Route path="/login" component={Login} />
             <Route path="/Signup" component={Signup} />
             <Route path="/podcasts/episodes"

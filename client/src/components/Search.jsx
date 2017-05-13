@@ -15,6 +15,7 @@ class Search extends React.Component {
     if (event.charCode === 13) {
       console.log(event.keyCode);
       this.props.onSearch(this._query.value);
+      this.props.currentPodcastView('Search Results');
     }
   }
 
@@ -23,7 +24,11 @@ class Search extends React.Component {
       <div className='search'>
         <header>
           <h1>podcastio</h1>
-          <Link to='/' className='header-link' onClick={this.props.getHomePage}>Home</Link>
+          <Link to='/' className='header-link' onClick={() => { 
+                                                                this.props.getHomePage(); 
+                                                                this.props.currentPodcastView('Top 10 Podcasts!');
+                                                              } 
+                                                       }>Home</Link>
           <Link to='/login' className='header-link'>Login</Link>
           <Link to='/logout' className='header-link' onClick={this.props.logoutUser}>Logout</Link>
           <input
