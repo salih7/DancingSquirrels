@@ -7,6 +7,7 @@ import PodcastEpisodes from './components/PodcastEpisodes.jsx';
 import Login from './components/Login.jsx';
 import Signup from './components/Signup.jsx';
 import Layout from './layout/Layout.jsx';
+import ReactRouter from 'react-router';
 
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -95,6 +96,11 @@ class App extends React.Component {
                                   onSearch={this.onSearch}
                                   podcasts={this.state.podcasts}
                                   onClickPodcast={this.onClickPodcast}/> )} />
+            <Route path="/logout" component={() => (<PodcastMain
+                                  onSearch={this.onSearch}
+                                  podcasts={this.state.podcasts}
+                                  onClickPodcast={this.onClickPodcast}/> )} />
+                                             
 
           </Switch>
         </div>
@@ -102,5 +108,6 @@ class App extends React.Component {
     );
   }
 }
+
 
 ReactDOM.render(<App />, document.getElementById('podcast-main'));
