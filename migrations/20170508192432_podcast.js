@@ -63,6 +63,7 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
+<<<<<<< HEAD
   return Promise.all([
     knex.schema.dropTable('users'),
     knex.schema.dropTable('podcasts'),
@@ -70,4 +71,13 @@ exports.down = function(knex, Promise) {
     knex.schema.dropTable('user_episodes'),
     knex.schema.dropTable('session')
   ]);
+=======
+   return Promise.all([
+        knex.schema.dropTable('users'),
+        knex.schema.dropTable('podcasts'),
+        knex.schema.dropTable('episodes'),
+        knex.schema.dropTable('user_episodes'),
+        knex.schema.dropTable('sessions')
+    ])
+>>>>>>> Rebase
 };
