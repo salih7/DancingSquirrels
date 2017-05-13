@@ -4,18 +4,13 @@ import { Link } from 'react-router-dom';
 class Layout extends React.Component {
   render() {
     return (
-      <div className="top-menu">
-        <ul>
-          <li>
-            <Link to="/" onClick={this.props.getHomePage}>Home</Link>
-          </li>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/logout" onClick={this.props.logoutUser}>Logout</Link>
-          </li>
-        </ul>
+      <div>
+        <header>
+          <h1 id='main_title'>Podcastio</h1>
+          <Link to="/" onClick={this.props.getHomePage}>Home</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/logout" onClick={this.props.logoutUser}>Logout</Link>
+        </header>
       </div>
     );
   }

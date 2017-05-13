@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Link } from 'react-router-dom';
+
 class Search extends React.Component {
   constructor(props) {
     super(props);
@@ -19,13 +21,18 @@ class Search extends React.Component {
   render() {
     return (
       <div className='search'>
-        <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
-        <input
-          type='text'
-          placeholder="Search"
-          onKeyPress={this.onSearch}
-          ref={(input) => this._query = input }
-        />
+        <header>
+          <h1>podcastio</h1>
+          <Link to='/' className='header-link' onClick={this.props.getHomePage}>Home</Link>
+          <Link to='/login' className='header-link'>Login</Link>
+          <Link to='/logout' className='header-link' onClick={this.props.logoutUser}>Logout</Link>
+          <input
+            type='text'
+            placeholder="Search"
+            onKeyPress={this.onSearch}
+            ref={(input) => this._query = input }
+          />
+        </header>
       </div>
     );
   }

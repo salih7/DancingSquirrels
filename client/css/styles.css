@@ -5,47 +5,50 @@ body {
   margin: 0 auto 0 auto;
 }
 
-/* Top menu */
+/* Header */
 
-.top-menu {
-  height: 35px;
-}
-
-.top-menu > ul {
-  background-color: #3E7780;
-  margin: 0;
-  padding: 5px 10px;
-  list-style: none;
-  text-align:center;
+header {
+  z-index: 10;
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1;
+  overflow: hidden;
+  /*background-color: #fafafa;*/
+  background-color: crimson;
+;
+  padding: 8px 30px;
 }
 
-.top-menu > ul > li {
-  display: inline-block;
-  margin: 0 5px;
-  padding: 0 15px 0 10px;
-  border-right: 1px solid white;
-  font-size: 14px;
+header > h1 {
+  font-family: monospace;
+  font-weight: normal;
   color: white;
-  text-transform: uppercase;
+  margin: 0;
 }
 
-.top-menu > ul > li:last-child {
-  border: none;
+header > input {
+  min-width: 250px;
+  max-width: 350px;
+  width: 33%;
+  padding: 4px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
 }
 
-.top-menu > ul > li a {
+.header-link {
   color: white;
-  text-decoration: none;
+  font-size: 115%;
 }
 
-.top-menu > ul > li a:hover {
-  text-decoration: underline;
+.header-link:hover {
+  color: white;
 }
+
 
 /* Podcast */
 
@@ -71,7 +74,7 @@ body {
 }
 
 /* Search */
-.search {
+/*.search {
   padding-left: 10px;
   margin-left: 20px;
   position: relative;
@@ -88,3 +91,4 @@ body {
   top: 5px;
   left: 15px;
 }
+*/
