@@ -4,8 +4,12 @@ const UserPodcastModel = require('../../db/models/User_Podcast.js');
 const UserFavoritePodcastModel = require('../../db/models/User_Favorite_Podcast.js');
 
 const utils = require('../utils.js');
+
 const session = require('express-session');
 const passport = require('passport');
+
+const authHelpers = require('../auth/authHelpers.js');
+
 
 const router = express.Router();
 
