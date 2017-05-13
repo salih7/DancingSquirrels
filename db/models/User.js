@@ -1,4 +1,4 @@
-const knex = require('../db.js')
+const knex = require('../db.js');
 const bookshelf = require('bookshelf')(knex);
 const bcrypt = require('bcrypt');
 
@@ -6,7 +6,7 @@ const saltRounds = 10;
 
 const User = bookshelf.Model.extend({
   tableName: 'users'
-})
+});
 
 const insertOne = (username, password, cb) => {
   bcrypt.hash(password, saltRounds, (err, hash) => {
@@ -18,16 +18,16 @@ const insertOne = (username, password, cb) => {
     })
     .catch((err) => {
       return cb(err);
-    })
-  })
-}
+    });
+  });
+};
 
 const fetchOneExternal = (username, password, cb) => {
   User
   .where('username', username)
   .fetch()
   .then((user) => {
-    console.log(user)
+    console.log(user);
     if (!user) {
       return cb(null, null);
     } else {
@@ -36,15 +36,15 @@ const fetchOneExternal = (username, password, cb) => {
   })
   .catch((err) => {
     return cb(err, null);
-  })
-}
+  });
+};
 
 const fetch = (username, cb) => {
   User
   .where('username', username)
   .fetch()
   .then((user) => {
-    console.log(user)
+    console.log(user);
     if (!user) {
       return cb('User not found');
     } else {
@@ -53,13 +53,13 @@ const fetch = (username, cb) => {
   })
   .catch((err) => {
     return cb(err);
-  })
-}
+  });
+};
 
 const insertOneExternal = (username, password, provider, id, cb) => {
   let options = {
     username: username
-  }
+  };
   if (provider === 'facebook') {
     options.facebookId = id;
   } else if (provider === 'google') {
@@ -78,9 +78,9 @@ const insertOneExternal = (username, password, provider, id, cb) => {
     })
     .catch((err) => {
       return cb(err, null);
-    })
-  })
-}
+    });
+  });
+};
 
 const comparePasswords = (username, password, cb) => {
   User
@@ -97,10 +97,10 @@ const comparePasswords = (username, password, cb) => {
         } else {
           return cb(null, false);
         }
-      })
+      });
     }
-  })
-}
+  });
+};
 
 module.exports.User = User;
 module.exports.insertOne = insertOne;

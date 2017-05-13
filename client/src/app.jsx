@@ -15,7 +15,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       podcasts: [],
-      podcastEpisodes: {}
+      podcastEpisodes: {},
+      loggedIn: false
     };
 
     this.getHomePage = this.getHomePage.bind(this);
@@ -85,7 +86,7 @@ class App extends React.Component {
                                   onClickPodcast={this.onClickPodcast}/> )} />
             <Route path="/login" component={Login} />
             <Route path="/Signup" component={Signup} />
-            <Route path="/podcasts/episodes" 
+            <Route path="/podcasts/episodes"
                    component={() => (<PodcastEpisodes podcastEpisodes={this.state.podcastEpisodes} /> )} />
             <Route
               name="user"
@@ -94,7 +95,6 @@ class App extends React.Component {
                                   onSearch={this.onSearch}
                                   podcasts={this.state.podcasts}
                                   onClickPodcast={this.onClickPodcast}/> )} />
-                                             
 
           </Switch>
         </div>
