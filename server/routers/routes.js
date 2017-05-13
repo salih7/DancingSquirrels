@@ -75,10 +75,15 @@ router.route('/favorite')
 
 router.route('/login/local')
   .get((req, res) => {
+<<<<<<< HEAD
     res.redirect('/#/local/login');
   });
 
 
+=======
+    res.redirect('/#/local/login')
+  })
+>>>>>>> Updated local/login route to route correctly
 
 router.route('/signup')
   .post((req, res) => {
