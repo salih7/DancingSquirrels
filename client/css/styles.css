@@ -7,11 +7,14 @@ body {
 }
 
 h3 {
+  color: #483D8B;
   font-family: cursive;
   font-weight: bolder;
-  color: #483D8B;
   font-size: 200%;
+  margin-bottom: 25px;
+  text-align: left; 
 }
+
 
 /* Header */
 
@@ -65,10 +68,56 @@ header > input {
   color: yellow;
 }
 
+/* Podcast Card */
+
+.podcast-card {
+  float: left;
+  margin-right: 2%;
+  border: 2px solid #333;
+  border-radius: 4px;
+  text-align: left;
+  width: 30%;
+  height: 0;
+  padding-bottom: 164px;
+  overflow: hidden;
+  margin-bottom: 2%;
+}
+
+.podcast-card:hover {
+  cursor: pointer;
+}
+
+.podcast-card:hover > .podcast-title-author {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.podcast-card > img {
+  width: 46%;
+  float: left;
+}
+
+.podcast-card > div {
+  display: block;
+  float: right;
+  width: 50%;
+}
+
+.podcast-card > div > h5 {
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.podcast-card > div > p {
+  font-size: 14px;
+}
+
+
 
 /* Podcast */
 
-.podcast-wrapper {
+/*.podcast-wrapper {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -87,7 +136,7 @@ header > input {
 .podcast-title-author:hover {
   text-decoration: underline;
   cursor: pointer;
-}
+}*/
 
 /* Search */
 /*.search {
