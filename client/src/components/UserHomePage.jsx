@@ -32,7 +32,7 @@ class UserHomePage extends React.Component {
   render() {
     return (
       <div className='main-container'>
-        <h1>UserHomePage</h1>
+        <h2>{this.username}'s Home Page</h2>
         <Search onSearch={this.props.onSearch} />
         <PodcastList
           podcasts={this.props.podcasts}

@@ -1,7 +1,7 @@
 /* Layout */
 
 body {
-  max-width: 1200px;
+  max-width: 80%;
   margin: 80px auto auto auto;
   position: relative;
 }
@@ -113,11 +113,46 @@ header > input {
   font-size: 14px;
 }
 
+.submit {
+  background-color: crimson;
+  font-family: monospace;
+  font: bold 11px;
+  color: #ffffff;
+  padding: 2px 50px 2px 50px;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 280px;
+  margin-top: 10px;
+}
+
 .favorite-button {
-  margin-left: -7.5%;
+  margin-left: -17.7%;
   margin-top: 14.5%;
   margin-bottom: 2%;
   float: left;
+
+  background-color: dodgerblue;
+  font-family: monospace;
+  font: bold 11px;
+  color: #ffffff;
+  padding: 2px 50px 2px 50px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+
+.delete-button {
+  margin-left: -15.8%;
+  margin-top: 14.5%;
+  margin-bottom: 2%;
+  float: left;
+
+  background-color: crimson;
+  font-family: monospace;
+  font: bold 11px;
+  color: #ffffff;
+  padding: 2px 50px 2px 50px;
+  font-size: 20px;
+  border-radius: 5px;
 }
 
 /* Pocast Description */
@@ -157,6 +192,22 @@ header > input {
 .podcast-episode {
   margin-top: 20px;
   margin-bottom: 20px;
+}
+
+/* Podcast Wrapper */
+
+favorite-podcast-wrapper {
+  width: 100%;
+}
+
+.podcast-wrapper {
+  width: 100%;
+}
+
+.podcast-wrapper:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 /* View Rating */

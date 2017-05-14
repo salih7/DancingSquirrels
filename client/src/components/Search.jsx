@@ -23,7 +23,7 @@ class Search extends React.Component {
     return (
       <div className='search'>
         <header>
-          <h1>podcastio</h1>
+          <h1>podiocast</h1>
           <Link to='/' className='header-link' onClick={() => { 
                                                                 this.props.getHomePage(); 
                                                                 this.props.currentPodcastView('Top 10 Podcasts!');
