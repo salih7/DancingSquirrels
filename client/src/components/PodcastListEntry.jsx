@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import $ from 'jquery';
+import ViewRating from './ViewRating.jsx';
 
 class PodcastListEntry extends React.Component {
   constructor(props) {
@@ -33,16 +34,18 @@ class PodcastListEntry extends React.Component {
 
   render() {
     return (
-      <div className='podcast-card' onClick={this.onClickPodcast}>
-        <img src={this.props.podcast.artworkUrl100} />
-        <div className='podcast-title-author'>
-          <h5>{this.props.podcast.collectionName}</h5>
-          <p>{this.props.podcast.artistName}</p>
+        <div className='podcast-card' onClick={this.onClickPodcast}>
+          <img src={this.props.podcast.artworkUrl100} />
+          <div className='podcast-title-author'>
+            <h5>{this.props.podcast.collectionName}</h5>
+            <p>{this.props.podcast.artistName}</p>
+            {
+              this.props.podcast.rating ? <ViewRating rating={this.props.podcast.rating} /> : null
+            }
+          </div>
         </div>
-      </div>
     );
   }
-
 }
 
 PodcastListEntry.contextTypes = {

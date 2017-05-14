@@ -12,7 +12,7 @@ body {
   font-weight: bolder;
   font-size: 200%;
   margin-bottom: 25px;
-  text-align: left; 
+  text-align: left;
 }
 
 
@@ -143,10 +143,13 @@ header > input {
 .podcast-description > h2 {
   color: black;
   font-weight: bold;
+  margin-top:10px;
 }
 
 .podcast-description > p {
   font-size: 14px;
+  height: 95px;
+  overflow: scroll;
 }
 
 /* Podcast Episode */
@@ -155,6 +158,95 @@ header > input {
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+/* View Rating */
+form p,
+form input[type="submit"] {
+  text-align: left;
+  font-size: 14px;
+}
+
+#wrapper form input[type="submit"] {
+  border: 1px solid #d9d9d9;
+  background-color: #efefef;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  margin:0px 5px;
+}
+
+ ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}
+
+.addrating label:hover,
+.addrating label:hover ~  label {
+  color: orange;
+}
+
+.viewrating, .addrating{
+ float-left;
+ width:100px;
+ display: inline-block;
+}
+
+.addrating{
+  width:180px;
+}
+
+.addrating .rating{
+  display: inline-block;
+}
+
+.reviewbutton{
+  margin-top:5px;
+  width: 100px;
+  display: inline-block;
+}
+
+.ratingcontainer{
+  margin-left:230px;
+
+}
+
+.review-container{
+    width: 600px;
+}
+
+.review-container .summary{
+  width: 500px;
+}
+.review-container .review{
+  width: 500px;
+  display: inline-block;
+  margin-left: 14px;
+  margin-top: 10px;
+}
+.review-container button{
+    float:right;
+    margin-right: 35px;
+}
+
+.review-container .label-review{
+  position: relative;
+  top: -85px;
+}
+
+/* View Rating */
 
 /* Podcast */
 

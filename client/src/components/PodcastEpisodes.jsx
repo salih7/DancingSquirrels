@@ -1,16 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import $ from 'jquery';
+import ViewRating from './ViewRating.jsx';
+import Rating from './Rating.jsx';
+import DisplayReview from './DisplayReview.jsx';
+import WriteReview from './WriteReview.jsx';
 
-const PodcastEpisodes = (props) => {
+class PodcastEpisodes extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      rating: this.props.podcastEpisodes.rating || 0
+    };
+  }
+
+  componentDidMount(){
+    var collectionIds = [this.props.podcastEpisodes.collectionId];
+
+    $.get('/search-rating', { collectionIds })
+        .done(response => {
+          if (response && Object.keys(response).length > 0) {
+            this.setState({
+              rating: response[0].rating
+            });
+
+            }
+        });
+  }
+
+  render() {
+
   return (
     <div className='podcast-episodes'>
       <div className='podcast-description'>
         {/*<h3>{props.podcastEpisodes.summary}</h3>*/}
-        <img src={props.podcastEpisodes.image} height='200px' width='200px' />
-        <h2>{props.podcastEpisodes.title}</h2>
-        <p>{props.podcastEpisodes.description}</p>
+        <img src={this.props.podcastEpisodes.image} height='200px' width='200px' />
+        <h2>{this.props.podcastEpisodes.title}</h2>
+        <p>{this.props.podcastEpisodes.description}</p>
+        <div className='ratingcontainer'>
+            <div className='viewrating'><ViewRating rating={this.state.rating}/></div>
+            <div className='addrating'><Rating collectionId={this.props.podcastEpisodes.collectionId}/></div>
+          </div>
       </div>
-      {props.podcastEpisodes.episodes.map((episode, itr) => {
+      {this.props.podcastEpisodes.episodes.map((episode, itr) => {
         return (
           <div key={itr} className='podcast-episode'>
             <h4>{episode.title}</h4>
@@ -20,8 +52,12 @@ const PodcastEpisodes = (props) => {
           </div>
         );
       })}
+      <h3>Reviews</h3>
+      <WriteReview collectionId={this.props.podcastEpisodes.collectionId}/>
+      <DisplayReview collectionId={this.props.podcastEpisodes.collectionId}/>
     </div>
   );
+}
 };
 // {
 //   this.state.renderEpisodes

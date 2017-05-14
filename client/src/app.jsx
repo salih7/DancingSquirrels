@@ -39,7 +39,31 @@ class App extends React.Component {
         this.setState({
           podcasts: results
         });
+        this.updateRatings();
       });
+  }
+
+  updateRatings() {
+    var collectionIds = this.state.podcasts.map((podcast) => {
+      return podcast.collectionId;
+    });
+    $.get('/search-rating', { collectionIds })
+        .done(rating => {
+          if (rating && Object.keys(rating).length > 0) {
+            var newPodcasts = this.state.podcasts;
+            rating.forEach(function(val) {
+              for ( var item of newPodcasts ) {
+                if (item.collectionId === val.podcast_id ) {
+                  item.rating = val.rating;
+                  break;
+                }
+              }
+            });
+            this.setState({
+              podcasts: newPodcasts
+            });
+          }
+        });
   }
 
   onClickPodcast(feedUrl, collectionId, callback) {
@@ -66,9 +90,10 @@ class App extends React.Component {
         this.setState({
           podcasts: results
         });
+        this.updateRatings();
       });
   }
-  
+
   logoutUser() {
     $.get('/logout');
   }
@@ -85,7 +110,7 @@ class App extends React.Component {
         <div>
           <Search onSearch={this.onSearch}
                   getHomePage={this.getHomePage}
-                  logoutUser={this.logoutUser} 
+                  logoutUser={this.logoutUser}
                   currentPodcastView={this.currentPodcastView}/>
           <Switch>
             <Route
@@ -112,7 +137,7 @@ class App extends React.Component {
                                   onSearch={this.onSearch}
                                   podcasts={this.state.podcasts}
                                   onClickPodcast={this.onClickPodcast}/> )} />
-                                             
+
 
           </Switch>
         </div>
