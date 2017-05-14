@@ -47,7 +47,7 @@ class FavoritePodcasts extends React.Component {
           this.props.favPodcasts.length > 0
           ?
           <div>
-            <h3>My Favorites</h3>
+            <h2>My Favorites</h2>
               <div className='podcast-wrapper'>
                   {
                     this.props.favPodcasts.map((podcast, itr) => {
@@ -58,7 +58,7 @@ class FavoritePodcasts extends React.Component {
                           podcast={podcast}
                           onClickPodcast={this.props.onClickPodcast}
                           loggedIn={this.props.loggedIn}/>
-                        <button onClick={this.onDelete.bind(this, podcast, itr)}>Delete</button>
+                        <button className='delete-button' onClick={this.onDelete.bind(this, podcast, itr)}>Delete</button>
                         </div>
                       );
                     })
