@@ -33,11 +33,11 @@ class PodcastListEntry extends React.Component {
 
   render() {
     return (
-      <div className='podcast'>
-        <img onClick={this.onClickPodcast} src={this.props.podcast.artworkUrl100} />
+      <div className='podcast-card' onClick={this.onClickPodcast}>
+        <img src={this.props.podcast.artworkUrl100} />
         <div className='podcast-title-author'>
-          <h4 onClick={this.onClickPodcast}>{this.props.podcast.collectionName}</h4>
-          <h5 onClick={this.onClickPodcast}>{this.props.podcast.artistName}</h5>
+          <h5>{this.props.podcast.collectionName}</h5>
+          <p>{this.props.podcast.artistName}</p>
         </div>
       </div>
     );
