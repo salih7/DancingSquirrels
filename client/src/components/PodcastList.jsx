@@ -28,7 +28,7 @@ class PodcastList extends React.Component {
   render() {
     return (
       <div>
-        <h3 id='podcast-results'>{this.props.currentPodcastView}</h3>
+        <h3 className='podcast-results'>{this.props.currentPodcastView}</h3>
         <div className='podcast-wrapper'>
           {
             this.props.podcasts.map((podcast, itr) => {

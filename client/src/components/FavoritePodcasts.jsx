@@ -47,7 +47,7 @@ class FavoritePodcasts extends React.Component {
           this.props.favPodcasts.length > 0
           ?
           <div>
-            <h2>My Favorites</h2>
+            <h2 className='podcast-results'>My Favorites</h2>
               <div className='podcast-wrapper'>
                   {
                     this.props.favPodcasts.map((podcast, itr) => {

@@ -6,7 +6,7 @@ body {
   position: relative;
 }
 
-#podcast-results {
+.podcast-results {
   color: #483D8B;
   font-family: cursive;
   font-weight: bolder;
@@ -113,18 +113,6 @@ header > input {
   font-size: 14px;
 }
 
-.submit {
-  background-color: crimson;
-  font-family: monospace;
-  font: bold 11px;
-  color: #ffffff;
-  padding: 2px 50px 2px 50px;
-  font-size: 20px;
-  border-radius: 5px;
-  width: 280px;
-  margin-top: 10px;
-}
-
 .favorite-button {
   margin-left: -17.7%;
   margin-top: 14.5%;
@@ -141,7 +129,7 @@ header > input {
 }
 
 .delete-button {
-  margin-left: -15.8%;
+  margin-left: -15.85%;
   margin-top: 14.5%;
   margin-bottom: 2%;
   float: left;

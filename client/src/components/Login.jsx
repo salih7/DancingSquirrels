@@ -23,10 +23,10 @@ const Login = () => {
             <a href="/login/github"><img src='https://help.dropsource.com/wp-content/uploads/sites/4/2017/02/gh-login-button.png' width ="300"/></a>
           </div>
           <div className="login">
-            <Link to="/login/local">Login</Link>
+            <Link to="/login/local" className='header-link'>Login</Link>
           </div>
           <div className="login">
-            <Link to="/signup">Signup</Link>
+            <Link to="/signup" className='header-link'>Signup</Link>
           </div>
         </div>
         <Route path="/login/local" component={LocalLogin} />
