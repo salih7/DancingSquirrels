@@ -78,7 +78,7 @@ header > input {
   text-align: left;
   width: 30%;
   height: 0;
-  padding-bottom: 164px;
+  padding-bottom: 13.667%;
   overflow: hidden;
   margin-bottom: 2%;
 }
@@ -111,6 +111,13 @@ header > input {
 
 .podcast-card > div > p {
   font-size: 14px;
+}
+
+.favorite-button {
+  margin-left: -7.5%;
+  margin-top: 14.5%;
+  margin-bottom: 2%;
+  float: left;
 }
 
 /* Pocast Description */
