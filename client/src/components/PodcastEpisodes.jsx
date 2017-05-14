@@ -4,14 +4,16 @@ import PropTypes from 'prop-types';
 const PodcastEpisodes = (props) => {
   return (
     <div className='podcast-episodes'>
-      <h1>{props.podcastEpisodes.title}</h1>
-      <h3>{props.podcastEpisodes.summary}</h3>
-      <img src={props.podcastEpisodes.image} />
-      <h4>{props.podcastEpisodes.description}</h4>
+      <div className='podcast-description'>
+        {/*<h3>{props.podcastEpisodes.summary}</h3>*/}
+        <img src={props.podcastEpisodes.image} height='200px' width='200px' />
+        <h2>{props.podcastEpisodes.title}</h2>
+        <p>{props.podcastEpisodes.description}</p>
+      </div>
       {props.podcastEpisodes.episodes.map((episode, itr) => {
         return (
           <div key={itr} className='podcast-episode'>
-            <h3>{episode.title}</h3>
+            <h4>{episode.title}</h4>
             <audio controls>
               <source src={episode.url} type="audio/mpeg" />
             </audio>
