@@ -21,7 +21,7 @@ app.use(session({
   store: sessionHelpers.store,
   resave: true,
   saveUninitialized: true,
-  cookie: { maxAge: 60000 }
+  cookie: { maxAge: 60000 * 60 * 24 }
 }));
 
 app.use('/', express.static(path.join(__dirname + '/../client')));

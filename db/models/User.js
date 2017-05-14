@@ -44,7 +44,6 @@ const fetch = (username, cb) => {
   .where('username', username)
   .fetch()
   .then((user) => {
-    console.log(user);
     if (!user) {
       return cb('User not found');
     } else {

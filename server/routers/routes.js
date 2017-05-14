@@ -16,12 +16,22 @@ router.route('/')
     res.status(200).sendFile('/index.html');
   });
 
+router.route('/loggedIn')
+  .get((req, res) => {
+    sessionHelpers.store.get(req.sessionID, (err, results) => {
+      if (results) {
+
+        res.send('loggedIn');
+      } else {
+        res.send(false);
+      }
+    })
+  })
+
 router.route('/logout')
   .get((req, res) => {
-    req.session.destroy((err) => {
-      console.log(err);
-    })
-    res.redirect('/');
+    sessionHelpers.store.destroy(req.sessionID);
+    req.session.destroy();
   })
 
 router.route('/topTen')
@@ -35,7 +45,7 @@ router.route('/topTen')
 
 router.route('/favorite/:id')
   .delete((req, res) => {
-    console.log('req.params.id', req.params.id);
+    // console.log('req.params.id', req.params.id);
     UserFavoritePodcastModel.destroy(req.params.id, (result) => {
       res.send(result);
     });
@@ -43,11 +53,11 @@ router.route('/favorite/:id')
 
 router.route('/favorite')
   .get((req, res) => {
-    console.log('req.body', req.query);
+    // console.log('req.body', req.query);
     UserModel.fetch(req.query.username, (result) => {
-      console.log('favorite: ', result);
+      // console.log('favorite: ', result);
       UserFavoritePodcastModel.fetchFavoritePodcasts(result.id, (data) => {
-        console.log('data', data);
+        // console.log('data', data);
         res.send(data);
       });
     });
@@ -57,7 +67,7 @@ router.route('/favorite')
   .post((req, res) => {
     // console.log('req', req);
     // console.log('req.session.passport.user', req.session.passport.user);
-    console.log('req.body', req.body);
+    // console.log('req.body', req.body);
     UserModel.fetch(req.body.username, (result) => {
       let options = {
         user_id: result.id,

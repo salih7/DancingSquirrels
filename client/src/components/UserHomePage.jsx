@@ -4,6 +4,7 @@ import Search from './Search.jsx';
 import PodcastList from './PodcastList.jsx';
 import PropTypes from 'prop-types';
 import FavoritePodcasts from './FavoritePodcasts.jsx';
+import { Redirect } from 'react-router-dom'
 
 
 class UserHomePage extends React.Component {
@@ -29,9 +30,27 @@ class UserHomePage extends React.Component {
       });
   }
 
+
+  componentWillMount() {
+    $.get('loggedIn')
+    .done((result) => {
+      if (result === 'loggedIn') {
+        this.setState({
+          loggedIn: true
+        })
+      } else {
+        this.setState({
+          loggedIn: false
+        })
+      }
+    })
+  }
+
   render() {
     return (
-      <div className='main-container'>
+      <div>
+      {this.state.loggedIn && 
+         <div className='main-container'>
         <h1>UserHomePage</h1>
         <Search onSearch={this.props.onSearch} />
         <PodcastList
@@ -45,7 +64,11 @@ class UserHomePage extends React.Component {
           onClickPodcast={this.props.onClickPodcast}
           loggedIn={this.state.loggedIn}/>
       </div>
-    );
+      }
+
+      {!this.state.loggedIn && <p> please log in </p> }
+      </div>
+    )
   }
 }
 

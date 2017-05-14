@@ -39,6 +39,8 @@ class Signup extends React.Component {
 
   render() {
     return (
+      <div>
+      <h3>Signup</h3>
       <form onSubmit={this.handleSubmit} >
         <label>
         Username:
@@ -56,6 +58,7 @@ class Signup extends React.Component {
         </label>
         <input type="submit" value="Submit" />
       </form>
+      </div>
     )
   }
 }

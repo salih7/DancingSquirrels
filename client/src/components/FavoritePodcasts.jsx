@@ -36,7 +36,6 @@ class FavoritePodcasts extends React.Component {
       method: 'DELETE'
     })
       .done((result) => {
-        console.log('Delete successful', result);
         this.props.getFavPodcasts();
       });
   }
@@ -44,7 +43,6 @@ class FavoritePodcasts extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.loggedIn)}
         {
           this.props.favPodcasts.length > 0
           ?

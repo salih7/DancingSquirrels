@@ -35,11 +35,17 @@ exports.up = function(knex, Promise) {
       table.integer('podcast_id');
     }),
 
-    knex.schema.createTable('sessions', (table) => {
+    knex.schema.createTableIfNotExists('sessions', (table) => {
       table.string('sid').notNullable().collate('default');
       table.json('sess').notNullable();
       table.timestamp('expired').notNullable();
 
+    }),
+
+    knex.schema.createTable('user_sessions', (table) => {
+      table.increments('id').primary();
+      table.integer('user_id');
+      table.string('sid');
     }),
 
     knex.schema.createTable('user_podcast', (table) => {
