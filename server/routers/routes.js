@@ -17,21 +17,6 @@ router.route('/')
     res.status(200).sendFile('/index.html');
   });
 
-router.route('/loggedIn')
-  .get((req, res) => {
-    sessionHelpers.store.get(req.sessionID, (err, results) => {
-      if (results) {
-        if (results.passport) {
-          res.send('loggedIn');
-        } else {
-          res.send(false)
-        }
-      } else {
-        res.send(false);
-      }
-    })
-  })
-
 router.route('/logout')
   .get((req, res) => {
     sessionHelpers.store.destroy(req.sessionID);

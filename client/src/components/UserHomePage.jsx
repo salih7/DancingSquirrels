@@ -31,7 +31,7 @@ class UserHomePage extends React.Component {
 
 
   componentWillMount() {
-    $.get('loggedIn')
+    $.get(`/user/${this.username}`)
     .done((result) => {
       if (result === 'loggedIn') {
         this.setState({

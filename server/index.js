@@ -26,7 +26,7 @@ app.use(session({
 
 app.use('/', express.static(path.join(__dirname + '/../client')));
 
-app.use('/', routes);
+app.use(authHelpers.verifySession, routes);
 
 const authentication = require('./auth/authentication.js');
 
