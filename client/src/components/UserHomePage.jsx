@@ -29,28 +29,9 @@ class UserHomePage extends React.Component {
       });
   }
 
-
-  componentWillMount() {
-    $.get(`/user/${this.username}`)
-    .done((result) => {
-      if (result === 'loggedIn') {
-        this.setState({
-          loggedIn: true
-        })
-      } else {
-        this.setState({
-          loggedIn: false
-        })
-      }
-    })
-  }
-
   render() {
     return (
-      <div>
-      {!this.state.loggedIn && <p> Please login </p> }
-      {this.state.loggedIn && 
-         <div className='main-container'>
+      <div className='main-container'>
         <h1>UserHomePage</h1>
         <Search onSearch={this.props.onSearch} />
         <PodcastList
@@ -63,9 +44,6 @@ class UserHomePage extends React.Component {
           getFavPodcasts={this.getFavorites}
           onClickPodcast={this.props.onClickPodcast}
           loggedIn={this.state.loggedIn}/>
-      </div>
-      }
-
       </div>
     )
   }

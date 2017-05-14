@@ -26,11 +26,12 @@ app.use(session({
 
 app.use('/', express.static(path.join(__dirname + '/../client')));
 
-app.use(authHelpers.verifySession, routes);
+app.use('/', routes);
 
 const authentication = require('./auth/authentication.js');
 
 app.listen(app.port, function () {
   console.log('Example app listening on port ' + app.port);
 });
+
 

@@ -40,23 +40,24 @@ class LocalLogin extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.localLoginSubmit} >
-        <label>
-        Username:
-        <input type="text" 
-          name="username" 
-          value={this.state.username} 
-          onChange={this.localLoginUsernameChange} />
-        </label>
-        <label>
-        Password:
-        <input type="text" 
-          name="password" 
-          value={this.state.password} 
-          onChange={this.localLoginPasswordChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="loginForms">
+        <h3>Login</h3>
+        <form onSubmit={this.localLoginSubmit} >
+          <label>Username</label> 
+          <input type="text" 
+            name="username" 
+            value={this.state.username} 
+            onChange={this.localLoginUsernameChange} />
+          <br></br>
+          <label>Password</label> 
+          <input type="text" 
+            name="password" 
+            value={this.state.password} 
+            onChange={this.localLoginPasswordChange} />
+          <br></br>
+          <input className="submit" type="submit" value="Submit" />
+        </form>
+      </div>
     )
   }
 }

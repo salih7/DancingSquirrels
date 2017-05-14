@@ -26,28 +26,6 @@ const sessionHandler = (req) => {
   })
 }
 
-const verifySession = (req, res, next) => {
-  let sid = req.sessionID;
-  if (req.url.includes('/user')) {
-      let user = req.url.substring(6);
-    sessionHelpers.store.get(sid, (err, sess) => {
-      if (sess.passport !== undefined) {
-        let passportUser = sess.passport.user;
-        if (passportUser === user) {
-          res.send('loggedIn')
-        } else {
-          res.redirect('/#/login')
-        }
-      } else {
-        res.redirect('/#/login')
-      }
-    })
-  } else {
-    next();
-  }
-}
-
 module.exports.insertExternal = insertExternal;
 module.exports.sessionHandler = sessionHandler;
-module.exports.verifySession = verifySession;
 
