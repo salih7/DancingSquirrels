@@ -248,6 +248,46 @@ input[type="radio"]:checked ~ label {
 
 /* View Rating */
 
+/* Login */
+
+.login {
+  font-family: monospace;
+  font: bold 11px;
+  background-color: crimson;
+  color: #ffffff;
+  padding: 2px 6px 2px 6px;
+  font-size: 20px;
+  width: 300px;
+  padding-right: 50px;
+  padding-left: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.loginForms {
+  margin: auto;
+  width: 500px;
+}
+
+.submit {
+  background-color: crimson;
+  font-family: monospace;
+  font: bold 11px;
+  color: #ffffff;
+  padding: 2px 50px 2px 50px;
+  font-size: 20px;
+  border-radius: 5px;
+  width: 280px;
+  margin-top: 10px;
+}
+
+label {
+  margin: 10px;
+  width: 100px;
+}
 /* Podcast */
 
 /*.podcast-wrapper {

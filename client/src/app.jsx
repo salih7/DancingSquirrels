@@ -8,6 +8,7 @@ import Login from './components/Login.jsx';
 import Search from './components/Search.jsx';
 import Signup from './components/Signup.jsx';
 import ReactRouter from 'react-router';
+import LocalLogin from './components/LocalLogin.jsx';
 
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -121,6 +122,7 @@ class App extends React.Component {
                                   podcasts={this.state.podcasts}
                                   onClickPodcast={this.onClickPodcast}
                                   currentPodcastView={this.state.currentPodcastView} />)} />
+            <Route path="/login/local" component={LocalLogin} />
             <Route path="/login" component={Login} />
             <Route path="/Signup" component={Signup} />
             <Route path="/podcasts/episodes"
