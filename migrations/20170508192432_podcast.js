@@ -56,6 +56,14 @@ exports.up = function(knex, Promise) {
       table.boolean('favorite');
     }),
 
+    knex.schema.createTable('reviews', (table) => {
+      table.increments('id').primary();
+      table.integer('user_id');
+      table.integer('podcast_id');
+      table.string('summary');
+      table.string('review');
+    }),
+
     knex.schema.createTable('user_favorite_podcasts', (table) => {
       table.increments('id').primary();
       table.integer('user_id');
@@ -77,6 +85,7 @@ exports.down = function(knex, Promise) {
         knex.schema.dropTable('user_episodes'),
         knex.schema.dropTable('sessions'),
         knex.schema.dropTable('user_podcast'),
-        knex.schema.dropTable('user_favorite_podcasts')
+        knex.schema.dropTable('user_favorite_podcasts'),
+        knex.schema.dropTable('reviews'),
     ])
 };

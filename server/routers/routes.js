@@ -2,6 +2,7 @@ const express = require('express');
 const UserModel = require('../../db/models/User.js');
 const UserPodcastModel = require('../../db/models/User_Podcast.js');
 const UserFavoritePodcastModel = require('../../db/models/User_Favorite_Podcast.js');
+const ReviewModel = require('../../db/models/Review.js');
 const utils = require('../utils.js');
 const session = require('express-session');
 const passport = require('passport');
@@ -127,6 +128,67 @@ router.route('/podcast')
       }
     });
   });
+
+router.route('/search-rating')
+ .get((req, res) => {
+   UserPodcastModel.fetch('podcast_id', req.query.collectionIds, results => {
+     if (results) {
+       res.status(200).send(results);
+     } else {
+       res.status(503).send('Service Unavailable');
+     }
+   });
+ });
+
+router.route('/addRating')
+ .post((req, res) => {
+   console.log(req.body);
+   UserModel.fetch(req.body.username, (result) => {
+     UserPodcastModel.insertOne({ podcast_id: req.body.collectionId, rating: parseInt(req.body.rating), user_id: result.id}, results => {
+       console.log(results);
+       if (results) {
+         res.status(200).send('success');
+       } else {
+         res.status(404).send('error');
+       }
+     });
+   });
+ });
+
+ router.route('/get-reviews')
+ .get((req, res) => {
+   ReviewModel.fetch(req.query.collectionId, results => {
+     if (results) {
+       res.status(200).send(results);
+     } else {
+       res.status(503).send('Service Unavailable');
+     }
+   });
+ });
+
+ router.route('/post-review')
+ .post((req, res) => {
+
+   UserModel.fetch(req.body.username, (result) => {
+     ReviewModel.insertOne({ podcast_id: req.body.collectionId, summary: req.body.summary,review: req.body.review, user_id: result.id}, results => {
+       console.log(results);
+       if (results) {
+         res.status(200).send('success');
+       } else {
+         res.status(404).send('error');
+       }
+     });
+   });
+ });
+
+router.route('/getUser')
+  .get((req, res) => {
+    if (req.session.passport && req.session.passport.user) {
+      res.send({ user: req.session.passport.user });
+    }else{
+      res.send({ user: '' });
+    }
+});
 
 
 module.exports = router;
