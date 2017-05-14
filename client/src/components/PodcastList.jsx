@@ -40,7 +40,7 @@ class PodcastList extends React.Component {
                     onClickPodcast={this.props.onClickPodcast}
                     loggedIn={this.props.loggedIn}/>
                   { this.props.loggedIn
-                    ? <button onClick={this.onFavorite.bind(this, podcast)}>Favorite</button>
+                    ? <button className='favorite-button' onClick={this.onFavorite.bind(this, podcast)}>Favorite</button>
                     : null
                   }
                 </div>
