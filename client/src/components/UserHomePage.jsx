@@ -4,7 +4,6 @@ import Search from './Search.jsx';
 import PodcastList from './PodcastList.jsx';
 import PropTypes from 'prop-types';
 import FavoritePodcasts from './FavoritePodcasts.jsx';
-import { Redirect } from 'react-router-dom'
 
 
 class UserHomePage extends React.Component {
@@ -49,6 +48,7 @@ class UserHomePage extends React.Component {
   render() {
     return (
       <div>
+      {!this.state.loggedIn && <p> Please login </p> }
       {this.state.loggedIn && 
          <div className='main-container'>
         <h1>UserHomePage</h1>
@@ -66,7 +66,6 @@ class UserHomePage extends React.Component {
       </div>
       }
 
-      {!this.state.loggedIn && <p> please log in </p> }
       </div>
     )
   }

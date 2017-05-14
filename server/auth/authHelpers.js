@@ -17,16 +17,6 @@ const insertExternal = (profile) => {
   })
 }
 
-const updateSession = (req, res, next) => {
-  let sid = req.sessionID;
-  sessionHelpers.store.get(sid, (err, sess) => {
-    if (sess) {
-      sessionHelpers.store.touch(sid, sess)
-    }
-  })
-  next();
-}
-
 const sessionHandler = (req) => {
   req.session.regenerate((err) => {
     if (err) {
@@ -37,4 +27,4 @@ const sessionHandler = (req) => {
 
 module.exports.insertExternal = insertExternal;
 module.exports.sessionHandler = sessionHandler;
-module.exports.updateSession = updateSession;
+

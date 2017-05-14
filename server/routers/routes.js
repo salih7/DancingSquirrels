@@ -20,8 +20,11 @@ router.route('/loggedIn')
   .get((req, res) => {
     sessionHelpers.store.get(req.sessionID, (err, results) => {
       if (results) {
-
-        res.send('loggedIn');
+        if (results.passport) {
+          res.send('loggedIn');
+        } else {
+          res.send(false)
+        }
       } else {
         res.send(false);
       }
