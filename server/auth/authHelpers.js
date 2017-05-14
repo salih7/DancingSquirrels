@@ -1,6 +1,5 @@
 const UserModel = require('../../db/models/User.js');
 const sessionHelpers = require('./sessionHelpers.js');
-const url = require('url');
 
 const insertExternal = (profile) => {
   let username = profile.id;
