@@ -6,7 +6,7 @@ body {
   position: relative;
 }
 
-h3 {
+#podcast-results {
   color: #483D8B;
   font-family: cursive;
   font-weight: bolder;
@@ -113,7 +113,41 @@ header > input {
   font-size: 14px;
 }
 
+/* Pocast Description */
 
+.podcast-description {
+  float: left;
+  margin-right: 2%;
+  border: 2px solid #333;
+  border-radius: 4px;
+  text-align: left;
+  width: 100%;
+  height: 0;
+  padding-bottom: 200px;
+  overflow: hidden;
+  margin-bottom: 2%;
+}
+
+.podcast-description > img {
+  float: left;
+  margin-right: 20px
+}
+
+.podcast-description > h2 {
+  color: black;
+  font-weight: bold;
+}
+
+.podcast-description > p {
+  font-size: 14px;
+}
+
+/* Podcast Episode */
+
+.podcast-episode {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
 /* Podcast */
 
