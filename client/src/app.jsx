@@ -68,7 +68,7 @@ class App extends React.Component {
         });
       });
   }
-
+  
   logoutUser() {
     $.get('/logout');
   }
@@ -107,6 +107,7 @@ class App extends React.Component {
                                   onSearch={this.onSearch}
                                   podcasts={this.state.podcasts}
                                   onClickPodcast={this.onClickPodcast}/> )} />
+
             <Route path="/logout" component={() => (<PodcastMain
                                   onSearch={this.onSearch}
                                   podcasts={this.state.podcasts}
