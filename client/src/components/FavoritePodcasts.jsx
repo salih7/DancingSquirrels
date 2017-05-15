@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 class FavoritePodcasts extends React.Component {
   constructor(props) {
     super(props);
-    // let hashArr = window.location.hash.split('/');
-    // this.username = hashArr[hashArr.length - 1];
+    // let hrefArr = window.location.href.split('/');
+    // this.username = hrefArr[hrefArr.length - 1];
     // this.getFavorites = this.getFavorites.bind(this);
     // this.state = {
     //   favoritePodcasts: []

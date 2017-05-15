@@ -1,7 +1,7 @@
 import React from 'react';
 import Signup from './Signup.jsx';
 import LocalLogin from './LocalLogin.jsx';
-import { HashRouter as Router, Route, Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const Login = () => {
@@ -31,6 +31,5 @@ const Login = () => {
     </div>
   )
 }
-
 
 export default Login;

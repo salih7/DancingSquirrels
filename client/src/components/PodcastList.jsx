@@ -6,12 +6,12 @@ import PodcastListEntry from './PodcastListEntry.jsx';
 class PodcastList extends React.Component {
   constructor(props) {
     super(props);
-    let hashArr = window.location.hash.split('/');
-    this.username = hashArr[hashArr.length - 1];
+    let hrefArr = window.location.href.split('/');
+    this.username = hrefArr[hrefArr.length - 1];
   }
 
   onFavorite(podcast) {
-    // console.log(hashArr[hashArr.length - 1]);
+    // console.log(hrefArr[hrefArr.length - 1]);
     $.post('/favorite', {
       username: this.username,
       feedUrl: podcast.feedUrl,
