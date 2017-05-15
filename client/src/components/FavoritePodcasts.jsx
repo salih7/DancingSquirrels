@@ -7,28 +7,11 @@ import PropTypes from 'prop-types';
 class FavoritePodcasts extends React.Component {
   constructor(props) {
     super(props);
-    // let hrefArr = window.location.href.split('/');
-    // this.username = hrefArr[hrefArr.length - 1];
-    // this.getFavorites = this.getFavorites.bind(this);
-    // this.state = {
-    //   favoritePodcasts: []
-    // };
   }
 
   componentDidMount() {
     this.props.getFavPodcasts();
   }
-
-  // getFavorites() {
-  //   $.get('/favorite', {
-  //     username: this.username
-  //   })
-  //     .done((result) => {
-  //       this.setState({
-  //         favoritePodcasts: result
-  //       });
-  //     });
-  // }
 
   onDelete(podcast) {
     $.ajax({
