@@ -55,7 +55,8 @@ class App extends React.Component {
             rating.forEach(function(val) {
               for ( var item of newPodcasts ) {
                 if (item.collectionId === val.podcast_id ) {
-                  item.rating = val.rating;
+                  item.rating = Math.round(val.rating);
+                  item.noOfReviews = val.noofreviews;
                   break;
                 }
               }

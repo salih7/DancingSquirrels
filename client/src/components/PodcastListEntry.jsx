@@ -40,7 +40,12 @@ class PodcastListEntry extends React.Component {
             <h5>{this.props.podcast.collectionName}</h5>
             <p>{this.props.podcast.artistName}</p>
             {
-              this.props.podcast.rating ? <ViewRating rating={this.props.podcast.rating} /> : null
+              this.props.podcast.rating
+              ? <div>
+                  <ViewRating rating={this.props.podcast.rating} />
+                  <div className="review-num">{this.props.podcast.noOfReviews} reviews</div>
+                </div>
+              : null
             }
           </div>
         </div>

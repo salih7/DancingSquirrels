@@ -59,9 +59,11 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('reviews', (table) => {
       table.increments('id').primary();
       table.integer('user_id');
+      table.string('username');
+      table.timestamp('created_at').defaultTo(knex.fn.now());
       table.integer('podcast_id');
-      table.string('summary');
-      table.string('review');
+      table.string('summary',500);
+      table.string('review', 2000);
     }),
 
     knex.schema.createTable('user_favorite_podcasts', (table) => {

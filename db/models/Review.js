@@ -1,9 +1,9 @@
-const knex = require('../db.js')
+const knex = require('../db.js');
 const bookshelf = require('bookshelf')(knex);
 
 const Review = bookshelf.Model.extend({
   tableName: 'reviews'
-})
+});
 
 const insertOne = (options, cb) => {
     Review
@@ -14,12 +14,13 @@ const insertOne = (options, cb) => {
     })
     .catch((err) => {
       return cb(err);
-    })
-}
+    });
+};
 
 const fetchReviews = (podcastId, cb) => {
   Review
     .forge()
+    .orderBy('created_at', 'DESC')
     .where('podcast_id', podcastId)
     .fetchAll()
     .then((data) => {
@@ -30,6 +31,10 @@ const fetchReviews = (podcastId, cb) => {
     });
 };
 
+
+
 module.exports.Review = Review;
 module.exports.insertOne = insertOne;
 module.exports.fetch = fetchReviews;
+
+
