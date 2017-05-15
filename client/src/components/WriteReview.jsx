@@ -2,7 +2,8 @@ import React from 'react';
 import $ from 'jquery';
 
 class WriteReview extends React.Component {
- constructor(props) {
+
+  constructor(props) {
     super(props);
     this.state = {
       loggedIn: null
@@ -20,38 +21,43 @@ class WriteReview extends React.Component {
     });
   }
 
-handleOnReviewSubmit(e){
-   var context= this;
-   var summaryInput= $($(e.target).siblings(".summary" ));
-   var reviewInput= $($(e.target).siblings(".review" ));
-   var summary = summaryInput.val();
-   var review = reviewInput.val();
-   if(context.state.loggedIn && context.state.loggedIn.length>0){
-    $.post('/post-review', {collectionId : context.props.collectionId,summary: summary, review: review, username: context.state.loggedIn})
-        .done(result => {
-          console.log(summaryInput);
-          summaryInput.val("");
-          reviewInput.val("");
-        });
-  }else{
-    window.location.href='/#/login';
+  handleOnReviewSubmit(e) {
+    let context = this;
+    let summaryInput = $($(e.target).siblings( '.summary' ));
+    let reviewInput = $($(e.target).siblings( '.review' ));
+    let summary = summaryInput.val();
+    let review = reviewInput.val();
+    if (context.state.loggedIn && context.state.loggedIn.length > 0) {
+      let options = {
+        collectionId: context.props.collectionId,
+        summary: summary,
+        review: review,
+        username: context.state.loggedIn
+      };
+      $.post('/post-review', options)
+          .done(result => {
+            summaryInput.val('');
+            reviewInput.val('');
+            this.props.refreshReview();
+          });
+
+    } else {
+      window.location.href = '/#/login';
+    }
   }
-}
 
-
-    render() {
-      return (
+  render() {
+    return (
           <div className='review-container'>
-            <label>Summary:</label>
+            <label className='review-label'>Summary: </label>
             <input className='summary' type='text'></input><br/>
-            <label className='label-review'>Review:</label>
+            <label className='label-review'>Review: </label>
             <textarea className='form-control review' rows='7' cols='50'></textarea><br/>
             <button onClick={(e) => this.handleOnReviewSubmit(e)} >Submit</button>
+            <div className='clearfix'/>
           </div>
-      )
-
-    }
-
+    );
   }
+}
 
 export default WriteReview;

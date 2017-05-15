@@ -116,7 +116,7 @@ router.route('/podcast')
 
 router.route('/search-rating')
  .get((req, res) => {
-   UserPodcastModel.fetch('podcast_id', req.query.collectionIds, results => {
+   UserPodcastModel.fetchAvgRating(req.query.collectionIds, results => {
      if (results) {
        res.status(200).send(results);
      } else {
@@ -129,7 +129,12 @@ router.route('/addRating')
  .post((req, res) => {
    console.log(req.body);
    UserModel.fetch(req.body.username, (result) => {
-     UserPodcastModel.insertOne({ podcast_id: req.body.collectionId, rating: parseInt(req.body.rating), user_id: result.id}, results => {
+    var dataToInsert = {
+      podcast_id: req.body.collectionId,
+      rating: parseInt(req.body.rating),
+      user_id: result.id
+   };
+     UserPodcastModel.insertOne(dataToInsert, results => {
        console.log(results);
        if (results) {
          res.status(200).send('success');
@@ -140,7 +145,7 @@ router.route('/addRating')
    });
  });
 
- router.route('/get-reviews')
+router.route('/get-reviews')
  .get((req, res) => {
    ReviewModel.fetch(req.query.collectionId, results => {
      if (results) {
@@ -151,11 +156,18 @@ router.route('/addRating')
    });
  });
 
- router.route('/post-review')
+router.route('/post-review')
  .post((req, res) => {
 
    UserModel.fetch(req.body.username, (result) => {
-     ReviewModel.insertOne({ podcast_id: req.body.collectionId, summary: req.body.summary,review: req.body.review, user_id: result.id}, results => {
+    var dataToInsert = {
+      podcast_id: req.body.collectionId,
+       summary: req.body.summary,
+       review: req.body.review,
+       user_id: result.id,
+       username: req.body.username
+      };
+     ReviewModel.insertOne(dataToInsert, results => {
        console.log(results);
        if (results) {
          res.status(200).send('success');
@@ -170,10 +182,10 @@ router.route('/getUser')
   .get((req, res) => {
     if (req.session.passport && req.session.passport.user) {
       res.send({ user: req.session.passport.user });
-    }else{
+    } else {
       res.send({ user: '' });
     }
-});
+  });
 
 
 module.exports = router;
