@@ -86,7 +86,7 @@ router.route('/favorite')
 
 router.route('/login/local')
   .get((req, res) => {
-    res.redirect('/#/local/login');
+    res.redirect('/local/login');
   });
 
 router.route('/signup')
