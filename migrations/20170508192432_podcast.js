@@ -74,6 +74,11 @@ exports.up = function(knex, Promise) {
       table.string('artworkUrl100');
       table.string('collectionName');
       table.string('artistName');
+    }),
+
+    knex.schema.createTableIfNotExists('top_ten', (table) => {
+      table.increments('id').primary();
+      table.string('results', 5000);
     })
 
   ]);
@@ -89,5 +94,6 @@ exports.down = function(knex, Promise) {
         knex.schema.dropTable('user_podcast'),
         knex.schema.dropTable('user_favorite_podcasts'),
         knex.schema.dropTable('reviews'),
+        knex.schema.dropTable('top_ten')
     ])
 };

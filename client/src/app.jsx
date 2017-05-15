@@ -125,7 +125,7 @@ class App extends React.Component {
                                   currentPodcastView={this.state.currentPodcastView} />)} />
             <Route path="/login/local" component={LocalLogin} />
             <Route path="/login" component={Login} />
-            <Route path="/Signup" component={Signup} />
+            <Route path="/signup" component={Signup} />
             <Route path="/podcasts/episodes"
                    component={() => (<PodcastEpisodes podcastEpisodes={this.state.podcastEpisodes} /> )} />
             <Route
