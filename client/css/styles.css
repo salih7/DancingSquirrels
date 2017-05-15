@@ -398,7 +398,9 @@ input[type="radio"]:checked ~ label {
   margin-top: 10px;
 }
 
-label {
+
+
+.loginForms label {
   margin: 10px;
   width: 100px;
 }
