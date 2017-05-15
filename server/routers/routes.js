@@ -198,5 +198,10 @@ router.route('/getUser')
     }
   });
 
+router.route('*')
+  .get((req, res) => {
+    res.redirect('/');
+  })
+
 
 module.exports = router;
