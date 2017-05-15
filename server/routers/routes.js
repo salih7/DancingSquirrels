@@ -84,11 +84,6 @@ router.route('/favorite')
     });
   });
 
-router.route('/login/local')
-  .get((req, res) => {
-    res.redirect('/local/login');
-  });
-
 router.route('/signup')
   .post((req, res) => {
     UserModel.insertOne(req.body.username, req.body.password, (results)=> {
@@ -197,11 +192,6 @@ router.route('/getUser')
       res.send({ user: '' });
     }
   });
-
-router.route('*')
-  .get((req, res) => {
-    res.redirect('/');
-  })
 
 
 module.exports = router;

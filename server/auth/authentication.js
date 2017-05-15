@@ -36,11 +36,9 @@ app.get('/login/github', passport.authenticate('github'));
 app.get('/login/local', passport.authenticate('local'));
 
 app.get('/auth/facebook/return',
-  passport.authenticate('facebook', { failureRedirect: '/#/login/facebook' }),
+  passport.authenticate('facebook', { failureRedirect: '/login/facebook' }),
   function(req, res) {
-    authHelpers.sessionHandler(req);
-    res.redirect(`/#/user/${req.session.passport.user}`);
-  });
+    res.redirect(`/#/user/${req.session.passport.user}`);  });
 
 app.get('/auth/google/return',
   passport.authenticate('google', { failureRedirect: '/login/google' }),
